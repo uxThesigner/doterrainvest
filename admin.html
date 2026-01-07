@@ -18,11 +18,12 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
         
-        /* Animações */
+        /* Animações CSS Base */
         @keyframes slideUp {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        /* Classe utilitária para quando abrir via clique */
         .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
         
         @keyframes fadeIn {
@@ -30,6 +31,11 @@
             to { opacity: 1; }
         }
         .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+
+        /* Classe para transição suave quando solta o dedo (efeito elástico) */
+        .smooth-transition {
+            transition: transform 0.3s ease-out;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans h-screen flex flex-col overflow-hidden text-gray-800">
@@ -166,28 +172,23 @@
     </main>
 
     <nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-100 flex justify-around items-end pb-2 pt-2 z-40 shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
-        
         <a href="#" class="flex flex-col items-center w-16 text-green-600 tap-highlight-transparent">
             <i class="fas fa-home text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Início</span>
         </a>
-        
         <a href="#" class="flex flex-col items-center w-16 text-gray-400 hover:text-gray-600 tap-highlight-transparent">
             <i class="fas fa-users text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Leads</span>
         </a>
-        
         <div class="relative -top-5">
             <button onclick="toggleModal('modalNovoAnuncio')" class="w-14 h-14 bg-green-600 rounded-full shadow-xl flex items-center justify-center text-white text-2xl transform transition active:scale-90 tap-highlight-transparent border-4 border-gray-50">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
-        
         <a href="#" class="flex flex-col items-center w-16 text-gray-400 hover:text-gray-600 tap-highlight-transparent">
             <i class="fas fa-tractor text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Estoque</span>
         </a>
-        
         <button onclick="toggleMenu()" class="flex flex-col items-center w-16 text-gray-400 hover:text-gray-600 tap-highlight-transparent">
             <i class="fas fa-bars text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Menu</span>
@@ -198,13 +199,13 @@
     <div id="mobileMenuSheet" class="hidden fixed inset-0 z-50">
         <div class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm animate-fade-in" onclick="toggleMenu()"></div>
         
-        <div class="absolute bottom-0 w-full bg-white rounded-t-3xl shadow-2xl animate-slide-up flex flex-col max-h-[80vh]">
+        <div id="menuContent" class="absolute bottom-0 w-full bg-white rounded-t-3xl shadow-2xl animate-slide-up flex flex-col max-h-[80vh]">
             
-            <div class="w-full flex justify-center pt-3 pb-2" onclick="toggleMenu()">
-                <div class="w-12 h-1.5 bg-gray-200 rounded-full"></div>
+            <div id="menuHandle" class="w-full flex justify-center pt-4 pb-2 cursor-grab touch-none bg-white rounded-t-3xl">
+                <div class="w-12 h-1.5 bg-gray-300 rounded-full"></div>
             </div>
 
-            <div class="px-6 py-4 flex items-center border-b border-gray-50">
+            <div class="px-6 py-2 flex items-center border-b border-gray-50">
                 <img src="https://ui-avatars.com/api/?name=Danilo+Terra&background=0D9488&color=fff" class="w-12 h-12 rounded-full border-2 border-white shadow">
                 <div class="ml-3">
                     <h3 class="font-bold text-gray-800 text-lg">Danilo Terra</h3>
@@ -214,47 +215,16 @@
 
             <div class="p-4 space-y-1 overflow-y-auto">
                 <a href="#" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition">
-                    <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mr-4">
-                        <i class="fas fa-user-cog"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-bold text-gray-800 text-sm">Meu Perfil</h4>
-                        <p class="text-xs text-gray-400">Editar dados pessoais e senha</p>
-                    </div>
-                    <i class="fas fa-chevron-right text-gray-300"></i>
+                    <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mr-4"><i class="fas fa-user-cog"></i></div>
+                    <div class="flex-1"><h4 class="font-bold text-gray-800 text-sm">Meu Perfil</h4><p class="text-xs text-gray-400">Editar dados</p></div>
                 </a>
-
                 <a href="#" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition">
-                    <div class="w-10 h-10 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mr-4">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-bold text-gray-800 text-sm">Gerenciar Equipe</h4>
-                        <p class="text-xs text-gray-400">Vendedores e comissões</p>
-                    </div>
-                    <i class="fas fa-chevron-right text-gray-300"></i>
+                    <div class="w-10 h-10 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mr-4"><i class="fas fa-users-cog"></i></div>
+                    <div class="flex-1"><h4 class="font-bold text-gray-800 text-sm">Gerenciar Equipe</h4><p class="text-xs text-gray-400">Vendedores</p></div>
                 </a>
-
                 <a href="#" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition">
-                    <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center mr-4">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-bold text-gray-800 text-sm">Hub de Integrações</h4>
-                        <p class="text-xs text-gray-400">Configurar OLX, Mercado Livre...</p>
-                    </div>
-                    <i class="fas fa-chevron-right text-gray-300"></i>
-                </a>
-
-                 <a href="#" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition">
-                    <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center mr-4">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-bold text-gray-800 text-sm">Relatórios Financeiros</h4>
-                        <p class="text-xs text-gray-400">Fluxo de caixa completo</p>
-                    </div>
-                    <i class="fas fa-chevron-right text-gray-300"></i>
+                    <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center mr-4"><i class="fas fa-network-wired"></i></div>
+                    <div class="flex-1"><h4 class="font-bold text-gray-800 text-sm">Integrações</h4><p class="text-xs text-gray-400">Configurar canais</p></div>
                 </a>
             </div>
 
@@ -262,7 +232,6 @@
                 <a href="index.html" class="flex items-center justify-center w-full py-3 text-red-500 font-bold bg-red-50 rounded-xl hover:bg-red-100 transition">
                     <i class="fas fa-sign-out-alt mr-2"></i> Sair do Sistema
                 </a>
-                <p class="text-center text-[10px] text-gray-300 mt-4">Versão 1.2.0 • DoTerra System</p>
             </div>
         </div>
     </div>
@@ -270,10 +239,13 @@
 
     <div id="modalNovoAnuncio" class="hidden fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 flex items-end md:items-center justify-center">
         <div class="absolute inset-0" onclick="toggleModal('modalNovoAnuncio')"></div>
-        <div class="bg-white w-full md:w-auto md:max-w-4xl md:rounded-2xl rounded-t-3xl shadow-2xl relative z-10 max-h-[90vh] flex flex-col animate-slide-up">
-            <div class="md:hidden w-full flex justify-center pt-3 pb-1" onclick="toggleModal('modalNovoAnuncio')">
+        
+        <div id="anuncioContent" class="bg-white w-full md:w-auto md:max-w-4xl md:rounded-2xl rounded-t-3xl shadow-2xl relative z-10 max-h-[90vh] flex flex-col animate-slide-up">
+            
+            <div id="anuncioHandle" class="md:hidden w-full flex justify-center pt-4 pb-2 cursor-grab touch-none bg-white rounded-t-3xl">
                 <div class="w-12 h-1.5 bg-gray-300 rounded-full"></div>
             </div>
+
             <div class="flex justify-between items-center px-6 py-4 border-b border-gray-100">
                 <h3 class="text-xl font-bold text-gray-800 flex items-center">
                     <i class="fas fa-rocket text-green-600 mr-2"></i> Novo Anúncio
@@ -282,6 +254,7 @@
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
+            
             <div class="p-6 overflow-y-auto md:grid md:grid-cols-3 md:gap-8 space-y-6 md:space-y-0">
                 <div class="md:col-span-2 space-y-5">
                     <div class="border-2 border-dashed border-gray-300 bg-gray-50 rounded-xl p-6 text-center active:bg-green-50 transition">
@@ -294,18 +267,8 @@
                             <input type="text" class="w-full rounded-lg border-gray-300 focus:ring-green-500 py-3 font-medium" placeholder="Ex: Trator John Deere...">
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="text-xs font-bold text-gray-500 uppercase">Valor (R$)</label>
-                                <input type="text" class="w-full rounded-lg border-gray-300 focus:ring-green-500 py-3 font-bold text-gray-800" placeholder="0,00">
-                            </div>
-                            <div>
-                                <label class="text-xs font-bold text-gray-500 uppercase">Categoria</label>
-                                <select class="w-full rounded-lg border-gray-300 py-3">
-                                    <option>🚜 Máquina</option>
-                                    <option>🌾 Terra</option>
-                                    <option>🛻 Veículo</option>
-                                </select>
-                            </div>
+                            <div><label class="text-xs font-bold text-gray-500 uppercase">Valor (R$)</label><input type="text" class="w-full rounded-lg border-gray-300 py-3 font-bold text-gray-800" placeholder="0,00"></div>
+                            <div><label class="text-xs font-bold text-gray-500 uppercase">Categoria</label><select class="w-full rounded-lg border-gray-300 py-3"><option>🚜 Máquina</option><option>🌾 Terra</option></select></div>
                         </div>
                     </div>
                 </div>
@@ -313,54 +276,108 @@
                     <div class="bg-blue-50/50 rounded-xl p-4 border border-blue-100">
                         <p class="text-sm font-bold text-blue-800 mb-3 flex items-center"><i class="fas fa-share-alt mr-2"></i> Publicar em:</p>
                         <div class="space-y-3">
-                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-                                <input type="checkbox" checked disabled class="text-green-600 rounded focus:ring-green-500">
-                                <span class="ml-2 text-sm font-bold text-gray-700">Site DoTerra</span>
-                            </label>
-                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-                                <input type="checkbox" checked class="text-blue-600 rounded focus:ring-blue-500">
-                                <span class="ml-2 text-sm font-bold text-gray-700">OLX / Facebook</span>
-                            </label>
-                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-                                <input type="checkbox" class="text-yellow-500 rounded focus:ring-yellow-500">
-                                <span class="ml-2 text-sm font-bold text-gray-700">Mercado Livre</span>
-                            </label>
+                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" checked disabled class="text-green-600 rounded"><span class="ml-2 text-sm font-bold text-gray-700">Site DoTerra</span></label>
+                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" checked class="text-blue-600 rounded"><span class="ml-2 text-sm font-bold text-gray-700">OLX / Facebook</span></label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="p-4 border-t border-gray-100 flex space-x-3 bg-white md:rounded-b-2xl">
                 <button onclick="toggleModal('modalNovoAnuncio')" class="flex-1 py-3 text-gray-500 font-bold bg-gray-100 rounded-lg md:flex-none md:px-6">Cancelar</button>
-                <button class="flex-1 py-3 bg-green-600 text-white font-bold rounded-lg shadow-lg active:bg-green-700 transition">Publicar Agora</button>
+                <button class="flex-1 py-3 bg-green-600 text-white font-bold rounded-lg shadow-lg active:bg-green-700 transition">Publicar</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Função do Modal de Anúncio
+        // Funções de Abrir/Fechar Simples
         function toggleModal(id) {
             const modal = document.getElementById(id);
+            const content = id === 'modalNovoAnuncio' ? document.getElementById('anuncioContent') : null;
+            
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-                document.body.style.overflow = 'hidden'; // Trava scroll fundo
+                document.body.style.overflow = 'hidden';
+                if(content) {
+                    content.style.transform = ''; // Reseta posição
+                    content.classList.remove('smooth-transition');
+                }
             } else {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
-                document.body.style.overflow = ''; // Destrava
+                document.body.style.overflow = '';
             }
         }
 
-        // Função do Menu Gaveta (Novo!)
         function toggleMenu() {
             const menu = document.getElementById('mobileMenuSheet');
+            const content = document.getElementById('menuContent');
+            
             if (menu.classList.contains('hidden')) {
                 menu.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
+                document.body.style.overflow = 'hidden';
+                content.style.transform = ''; // Reseta posição
+                content.classList.remove('smooth-transition');
             } else {
                 menu.classList.add('hidden');
                 document.body.style.overflow = '';
             }
+        }
+
+        // ==========================================
+        // LÓGICA DE ARRASTAR (SWIPE DOWN) - A MÁGICA
+        // ==========================================
+        function setupDraggable(handleId, contentId, closeCallback) {
+            const handle = document.getElementById(handleId);
+            const content = document.getElementById(contentId);
+            let startY = 0;
+            let currentTranslate = 0;
+            let isDragging = false;
+
+            // Início do Toque
+            handle.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                content.classList.remove('smooth-transition'); // Remove animação pra ficar rápido
+            }, { passive: false });
+
+            // Durante o Movimento
+            handle.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentY = e.touches[0].clientY;
+                const diff = currentY - startY;
+
+                // Só move se for pra baixo (positivo)
+                if (diff > 0) {
+                    e.preventDefault(); // Evita scroll da tela
+                    currentTranslate = diff;
+                    content.style.transform = `translateY(${diff}px)`;
+                }
+            }, { passive: false });
+
+            // Fim do Toque
+            handle.addEventListener('touchend', () => {
+                isDragging = false;
+                content.classList.add('smooth-transition'); // Adiciona animação suave pro final
+
+                // Se puxou mais de 100px, fecha
+                if (currentTranslate > 100) {
+                    content.style.transform = `translateY(100%)`; // Joga lá pra baixo
+                    setTimeout(closeCallback, 200); // Chama a função de fechar depois da animação
+                } else {
+                    // Se puxou pouco, volta pro lugar (efeito elástico)
+                    content.style.transform = '';
+                }
+                currentTranslate = 0;
+            });
+        }
+
+        // Ativar a lógica nos dois painéis
+        // Só executa se estiver no mobile (detecta touch)
+        if ('ontouchstart' in window) {
+            setupDraggable('menuHandle', 'menuContent', toggleMenu);
+            setupDraggable('anuncioHandle', 'anuncioContent', () => toggleModal('modalNovoAnuncio'));
         }
     </script>
 </body>
