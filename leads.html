@@ -17,6 +17,8 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+        
+        /* Animações */
         .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         .smooth-transition { transition: transform 0.3s ease-out; }
@@ -37,8 +39,8 @@
         </div>
     </header>
 
-    <div class="bg-white pb-3 px-5 border-b border-gray-100 overflow-x-auto no-scrollbar whitespace-nowrap">
-        <button class="bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold mr-2 shadow-sm">Todos (142)</button>
+    <div class="bg-white pb-3 px-5 border-b border-gray-100 overflow-x-auto no-scrollbar whitespace-nowrap pt-1">
+        <button class="bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold mr-2 shadow-sm transform active:scale-95 transition">Todos (142)</button>
         <button class="bg-gray-100 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold mr-2 border border-gray-200">Novos (7)</button>
         <button class="bg-gray-100 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold mr-2 border border-gray-200">Negociação (35)</button>
         <button class="bg-gray-100 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold mr-2 border border-gray-200">Vendidos (12)</button>
@@ -63,13 +65,13 @@
             
             <div class="bg-gray-50 p-2 rounded-lg mb-3 border border-gray-100">
                 <p class="text-xs font-bold text-gray-700 flex items-center"><i class="fas fa-tractor text-gray-400 mr-2"></i> Trator Valtra A950</p>
-                <p class="text-[10px] text-gray-500 mt-1 pl-5">"Gostaria de saber o valor da entrada..."</p>
+                <p class="text-[10px] text-gray-500 mt-1 pl-5 truncate">"Gostaria de saber o valor da entrada..."</p>
             </div>
 
             <div class="flex justify-between items-center pt-2 border-t border-gray-50">
                 <div class="flex items-center">
                     <span class="text-[10px] text-gray-400 mr-2">Atendente:</span>
-                    <img src="https://ui-avatars.com/api/?name=Ana+Clara&background=FFEDD5&color=C2410C" class="w-5 h-5 rounded-full" title="Ana Clara">
+                    <img src="https://ui-avatars.com/api/?name=Ana+Clara&background=FFEDD5&color=C2410C" class="w-5 h-5 rounded-full">
                     <span class="text-[10px] font-bold text-gray-600 ml-1">Ana Clara</span>
                 </div>
                 <div class="flex space-x-2">
@@ -95,7 +97,7 @@
             </div>
             <div class="bg-gray-50 p-2 rounded-lg mb-3 border border-gray-100">
                 <p class="text-xs font-bold text-gray-700 flex items-center"><i class="fas fa-cog text-gray-400 mr-2"></i> Colheitadeira TC5090</p>
-                <p class="text-[10px] text-gray-500 mt-1 pl-5">Proposta de troca enviada. Aguardando...</p>
+                <p class="text-[10px] text-gray-500 mt-1 pl-5 truncate">Proposta de troca enviada. Aguardando...</p>
             </div>
             <div class="flex justify-between items-center pt-2 border-t border-gray-50">
                 <div class="flex items-center">
@@ -126,7 +128,7 @@
             </div>
             <div class="bg-gray-50 p-2 rounded-lg mb-3 border border-gray-100">
                 <p class="text-xs font-bold text-gray-700 flex items-center"><i class="fas fa-car text-gray-400 mr-2"></i> Hilux SRX 2024</p>
-                <p class="text-[10px] text-gray-500 mt-1 pl-5">Lead parado há 2 dias.</p>
+                <p class="text-[10px] text-gray-500 mt-1 pl-5">Lead parado há 2 dias sem resposta.</p>
             </div>
             <div class="flex justify-between items-center pt-2 border-t border-gray-50">
                 <div class="flex items-center">
@@ -187,7 +189,7 @@
             </button>
         </div>
         
-        <a href="#" class="flex flex-col items-center w-16 text-gray-400 hover:text-gray-600 tap-highlight-transparent">
+        <a href="estoque.html" class="flex flex-col items-center w-16 text-gray-400 hover:text-green-600 tap-highlight-transparent transition">
             <i class="fas fa-tractor text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Estoque</span>
         </a>
@@ -217,12 +219,16 @@
 
     <div id="modalNovoAnuncio" class="hidden fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 flex items-end md:items-center justify-center">
         <div class="absolute inset-0" onclick="toggleModal('modalNovoAnuncio')"></div>
+        
         <div id="anuncioContent" class="bg-white w-full md:w-auto md:max-w-4xl md:rounded-2xl rounded-t-3xl shadow-2xl relative z-10 max-h-[90vh] flex flex-col animate-slide-up">
+            
             <div id="anuncioHandle" class="md:hidden w-full flex justify-center pt-4 pb-2 cursor-grab touch-none bg-white rounded-t-3xl"><div class="w-12 h-1.5 bg-gray-300 rounded-full"></div></div>
+            
             <div class="flex justify-between items-center px-6 py-4 border-b border-gray-100">
                 <h3 class="text-xl font-bold text-gray-800 flex items-center"><i class="fas fa-rocket text-green-600 mr-2"></i> Novo Anúncio</h3>
                 <button onclick="toggleModal('modalNovoAnuncio')" class="hidden md:block text-gray-400 hover:bg-gray-100 rounded-full p-2"><i class="fas fa-times text-xl"></i></button>
             </div>
+            
             <div class="p-6 overflow-y-auto md:grid md:grid-cols-3 md:gap-8 space-y-6 md:space-y-0">
                 <div class="md:col-span-2 space-y-5">
                     <div class="border-2 border-dashed border-gray-300 bg-gray-50 rounded-xl p-6 text-center active:bg-green-50 transition"><i class="fas fa-camera text-3xl text-gray-400 mb-2"></i><p class="text-sm font-bold text-gray-600">Adicionar Fotos</p></div>
@@ -239,6 +245,7 @@
                             <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" checked class="text-purple-600 rounded"><i class="fas fa-store text-purple-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">OLX Brasil</span></label>
                             <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" checked class="text-blue-600 rounded"><i class="fab fa-facebook-f text-blue-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">Facebook</span></label>
                             <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" class="text-yellow-500 rounded"><i class="fas fa-handshake text-yellow-500 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">Mercado Livre</span></label>
+                             <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" class="text-red-600 rounded"><i class="fas fa-car text-red-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">WebMotors</span></label>
                         </div>
                     </div>
                 </div>
