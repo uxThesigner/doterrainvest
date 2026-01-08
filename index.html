@@ -24,14 +24,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #F3F4F6; }
         
-        /* HERO VERDE CORRIGIDO */
+        /* HERO VERDE COM TEXTURA (CORRIGIDO) */
         .hero-green {
-            background-color: #052e16; /* Fallback */
+            background-color: #052e16;
             background: radial-gradient(circle at center, #15803d 0%, #052e16 100%);
             position: relative;
         }
         
-        /* Textura de pontos sobre o verde */
         .hero-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px);
             background-size: 30px 30px;
@@ -46,19 +45,26 @@
         }
         .btn-pulse { animation: pulse-custom 2s infinite; }
         
+        /* Tabs da Busca */
         .search-tab { color: #64748b; font-weight: 600; cursor: pointer; padding-bottom: 12px; transition: all 0.2s; border-bottom: 4px solid transparent; }
         .search-tab:hover { color: #1e293b; }
         .search-tab.active { border-bottom: 4px solid #16a34a; color: #16a34a; font-weight: 800; }
 
+        /* Animações */
+        .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
         .fade-in-step { animation: fadeIn 0.4s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Radio Button Estilizado */
         .radio-btn:checked + label {
             background-color: #16a34a;
             color: white;
             border-color: #16a34a;
         }
         
+        /* Scrollbar interna bonita */
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -69,6 +75,7 @@
 
     <nav class="bg-white h-20 border-b border-gray-200 fixed w-full z-50 top-0 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 h-full flex justify-between items-center">
+            
             <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
                 <i class="fas fa-leaf text-agro-600 text-3xl"></i>
                 <div>
@@ -76,13 +83,16 @@
                     <p class="text-[10px] font-bold text-terra-600 uppercase tracking-widest">Marketplace</p>
                 </div>
             </div>
+
             <div class="flex items-center gap-4">
                 <button onclick="openAnuncioModal()" class="hidden md:flex items-center gap-2 text-slate-600 font-bold hover:text-agro-600 transition">
                     <i class="far fa-edit"></i> Vender
                 </button>
+                
                 <a href="login.html" class="hidden md:flex items-center gap-2 text-slate-600 font-bold hover:text-agro-600 transition">
                     <i class="far fa-user-circle text-xl"></i> Entrar
                 </a>
+                
                 <button onclick="toggleMenu()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 text-slate-800 transition">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
@@ -96,10 +106,18 @@
             <button onclick="toggleMenu()" class="text-slate-400 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
         </div>
         <div class="p-4 space-y-2">
-            <a href="login.html" class="block w-full bg-agro-600 text-white font-bold text-center py-3 rounded-lg shadow-md mb-4"><i class="fas fa-lock mr-2"></i> Área do Cliente / Login</a>
-            <a href="#" onclick="toggleMenu(); window.scrollTo(0,0)" class="flex items-center p-3 hover:bg-gray-50 rounded-lg font-bold text-slate-700"><i class="fas fa-search w-8 text-terra-500"></i> Comprar</a>
-            <button onclick="toggleMenu(); openAnuncioModal()" class="w-full flex items-center p-3 hover:bg-gray-50 rounded-lg font-bold text-slate-700 text-left"><i class="fas fa-tag w-8 text-terra-500"></i> Vender</button>
-            <button onclick="toggleMenu(); openSimulator()" class="w-full flex items-center p-3 hover:bg-gray-50 rounded-lg font-bold text-slate-700 text-left"><i class="fas fa-calculator w-8 text-terra-500"></i> Simular Consórcio</button>
+            <a href="login.html" class="block w-full bg-agro-600 text-white font-bold text-center py-3 rounded-lg shadow-md mb-4">
+                <i class="fas fa-lock mr-2"></i> Área do Cliente / Login
+            </a>
+            <a href="#" onclick="toggleMenu(); window.scrollTo(0,0)" class="flex items-center p-3 hover:bg-gray-50 rounded-lg font-bold text-slate-700">
+                <i class="fas fa-search w-8 text-terra-500"></i> Comprar
+            </a>
+            <button onclick="toggleMenu(); openAnuncioModal()" class="w-full flex items-center p-3 hover:bg-gray-50 rounded-lg font-bold text-slate-700 text-left">
+                <i class="fas fa-tag w-8 text-terra-500"></i> Vender
+            </button>
+            <button onclick="toggleMenu(); openSimulator()" class="w-full flex items-center p-3 hover:bg-gray-50 rounded-lg font-bold text-slate-700 text-left">
+                <i class="fas fa-calculator w-8 text-terra-500"></i> Simular Consórcio
+            </button>
         </div>
     </div>
     <div id="menuOverlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/60 z-[55] hidden transition-opacity opacity-0 backdrop-blur-sm"></div>
@@ -145,12 +163,19 @@
             </div>
 
             <div class="grid grid-cols-4 md:grid-cols-8 gap-4 mt-12 max-w-4xl mx-auto text-center">
-                <a href="#" class="group flex flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-tractor text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Tratores</span></a>
-                <a href="#" class="group flex flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-truck-pickup text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Picapes</span></a>
+                <a href="#" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-tractor text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Tratores</span>
+                </a>
+                <a href="#" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-truck-pickup text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Picapes</span>
+                </a>
                 
                 <a href="#" class="group flex flex-col items-center gap-2">
                     <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100">
-                        <i class="fas fa-seedling text-2xl"></i> </div>
+                        <i class="fas fa-seedling text-2xl"></i>
+                    </div>
                     <span class="text-xs font-bold text-slate-600">Terras</span>
                 </a>
                 
@@ -218,25 +243,192 @@
                     <div><h3 class="text-xl font-black text-slate-900">O que você vai anunciar?</h3><p class="text-sm text-slate-500">Preencha os detalhes para vender mais rápido.</p></div>
                     <button onclick="closeAnuncioModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-red-100 hover:text-red-500 transition"><i class="fas fa-times text-lg"></i></button>
                 </div>
+                
                 <div class="p-6 overflow-y-auto custom-scrollbar flex-1">
-                    <div class="mb-8"><label class="block text-sm font-bold text-slate-700 mb-3">Fotos do Anúncio (Máx 10)</label><div class="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 p-8 text-center cursor-pointer hover:border-agro-500 hover:bg-agro-50 transition group"><i class="fas fa-cloud-upload-alt text-4xl text-gray-400 group-hover:text-agro-600 mb-2 transition"></i><p class="font-bold text-slate-600">Clique para adicionar fotos</p><p class="text-xs text-gray-400">ou arraste os arquivos aqui</p></div></div>
-                    <div class="mb-6"><label class="block text-sm font-bold text-slate-700 mb-2">Categoria Principal *</label><select id="anuncioCategoria" onchange="updateFormFields()" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none font-semibold text-slate-700"><option value="" disabled selected>Selecione o tipo de bem...</option><option value="veiculo">🚗 Veículo / Caminhonete</option><option value="maquina">🚜 Maquinário Pesado</option><option value="imovel">🌾 Fazenda / Sítio / Terra</option><option value="gado">🐄 Gado / Pecuária</option></select></div>
-                    <div class="space-y-4"><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Título do Anúncio *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Ex: Trator Valtra A950 4x4 Cabinado"></div><div class="grid grid-cols-2 gap-4"><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Preço (R$) *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none font-bold" placeholder="0,00"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Localização *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Cidade - UF"></div></div></div>
-                    <div id="dynamicFields" class="mt-6 pt-6 border-t border-gray-100">
-                        <div id="fieldCondition" class="hidden mb-6"><label class="block text-sm font-bold text-slate-700 mb-3">Condição</label><div class="flex gap-3"><input type="radio" name="condicao" id="condNovo" class="hidden radio-btn"><label for="condNovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Novo</label><input type="radio" name="condicao" id="condSeminovo" class="hidden radio-btn"><label for="condSeminovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Seminovo</label><input type="radio" name="condicao" id="condUsado" class="hidden radio-btn"><label for="condUsado" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Usado</label></div></div>
-                        <div id="fieldsVeiculo" class="hidden grid grid-cols-2 gap-4"><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ano Modelo</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: 2024"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Quilometragem</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Km"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Combustível</label><select class="w-full p-3 border border-gray-300 rounded-lg outline-none"><option>Diesel</option><option>Flex</option><option>Gasolina</option></select></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Câmbio</label><select class="w-full p-3 border border-gray-300 rounded-lg outline-none"><option>Automático</option><option>Manual</option></select></div></div>
-                        <div id="fieldsMaquina" class="hidden grid grid-cols-2 gap-4"><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ano Fabricação</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: 2020"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Horas de Uso</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Horas"></div><div class="col-span-2"><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Marca / Modelo</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: John Deere, Valtra..."></div></div>
-                        <div id="fieldsImovel" class="hidden grid grid-cols-2 gap-4"><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Área Total</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Hectares / Alqueires"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Área Aberta</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Hectares"></div><div class="col-span-2"><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Documentação</label><select class="w-full p-3 border border-gray-300 rounded-lg outline-none"><option>Escriturada</option><option>Posse</option><option>GEO/CAR em andamento</option></select></div></div>
-                        <div id="fieldsGado" class="hidden grid grid-cols-2 gap-4"><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Quantidade (Cabeças)</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Qtd"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Peso Médio (@)</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Arrobas"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Era / Idade</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: 24 meses"></div><div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Raça</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: Nelore"></div></div>
+                    <div class="mb-8">
+                        <label class="block text-sm font-bold text-slate-700 mb-3">Fotos do Anúncio (Máx 10)</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 p-8 text-center cursor-pointer hover:border-agro-500 hover:bg-agro-50 transition group">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 group-hover:text-agro-600 mb-2 transition"></i>
+                            <p class="font-bold text-slate-600">Clique para adicionar fotos</p>
+                            <p class="text-xs text-gray-400">ou arraste os arquivos aqui</p>
+                        </div>
                     </div>
-                    <div class="mt-4"><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Descrição Detalhada</label><textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none h-32 resize-none" placeholder="Descreva os detalhes importantes, estado de conservação, aceita troca, etc..."></textarea></div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Categoria Principal *</label>
+                        <select id="anuncioCategoria" onchange="updateFormFields()" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none font-semibold text-slate-700">
+                            <option value="" disabled selected>Selecione o tipo de bem...</option>
+                            <option value="veiculo">🚗 Veículo / Caminhonete</option>
+                            <option value="maquina">🚜 Maquinário Pesado</option>
+                            <option value="imovel">🌾 Fazenda / Sítio / Terra</option>
+                            <option value="gado">🐄 Gado / Pecuária</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Título do Anúncio *</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Ex: Trator Valtra A950 4x4 Cabinado">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Preço (R$) *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none font-bold" placeholder="0,00"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Localização *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Cidade - UF"></div>
+                        </div>
+                    </div>
+
+                    <div id="dynamicFields" class="mt-6 pt-6 border-t border-gray-100">
+                        <div id="fieldCondition" class="hidden mb-6">
+                            <label class="block text-sm font-bold text-slate-700 mb-3">Condição</label>
+                            <div class="flex gap-3">
+                                <input type="radio" name="condicao" id="condNovo" class="hidden radio-btn"><label for="condNovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Novo</label>
+                                <input type="radio" name="condicao" id="condSeminovo" class="hidden radio-btn"><label for="condSeminovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Seminovo</label>
+                                <input type="radio" name="condicao" id="condUsado" class="hidden radio-btn"><label for="condUsado" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Usado</label>
+                            </div>
+                        </div>
+
+                        <div id="fieldsVeiculo" class="hidden grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ano Modelo</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: 2024"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Quilometragem</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Km"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Combustível</label><select class="w-full p-3 border border-gray-300 rounded-lg outline-none"><option>Diesel</option><option>Flex</option><option>Gasolina</option></select></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Câmbio</label><select class="w-full p-3 border border-gray-300 rounded-lg outline-none"><option>Automático</option><option>Manual</option></select></div>
+                        </div>
+
+                        <div id="fieldsMaquina" class="hidden grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ano Fabricação</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: 2020"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Horas de Uso</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Horas"></div>
+                            <div class="col-span-2"><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Marca / Modelo</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: John Deere, Valtra..."></div>
+                        </div>
+
+                        <div id="fieldsImovel" class="hidden grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Área Total</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Hectares / Alqueires"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Área Aberta</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Hectares"></div>
+                            <div class="col-span-2"><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Documentação</label><select class="w-full p-3 border border-gray-300 rounded-lg outline-none"><option>Escriturada</option><option>Posse</option><option>GEO/CAR em andamento</option></select></div>
+                        </div>
+
+                        <div id="fieldsGado" class="hidden grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Quantidade (Cabeças)</label><input type="number" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Qtd"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Peso Médio (@)</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Arrobas"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Era / Idade</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: 24 meses"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Raça</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg outline-none" placeholder="Ex: Nelore"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Descrição Detalhada</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none h-32 resize-none" placeholder="Descreva os detalhes importantes, estado de conservação, aceita troca, etc..."></textarea>
+                    </div>
                 </div>
-                <div class="p-6 border-t border-gray-100 bg-gray-50 flex justify-end gap-3 rounded-b-2xl"><button onclick="closeAnuncioModal()" class="px-6 py-3 font-bold text-slate-500 hover:bg-gray-200 rounded-lg transition">Cancelar</button><button class="px-8 py-3 bg-agro-600 hover:bg-agro-700 text-white font-bold rounded-lg shadow-lg transition transform active:scale-95">Publicar Anúncio</button></div>
+                <div class="p-6 border-t border-gray-100 bg-gray-50 flex justify-end gap-3 rounded-b-2xl">
+                    <button onclick="closeAnuncioModal()" class="px-6 py-3 font-bold text-slate-500 hover:bg-gray-200 rounded-lg transition">Cancelar</button>
+                    <button class="px-8 py-3 bg-agro-600 hover:bg-agro-700 text-white font-bold rounded-lg shadow-lg transition transform active:scale-95">Publicar Anúncio</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="modalSimulador" class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeSimulator()"></div><div class="absolute inset-0 flex items-center justify-center p-4"><div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative fade-in-step"><div class="bg-agro-600 p-6 text-white text-center relative"><button onclick="closeSimulator()" class="absolute top-4 right-4 text-white/70 hover:text-white"><i class="fas fa-times text-xl"></i></button><h3 class="text-2xl font-black" id="welcomeTitle">Olá, bem-vindo(a)!</h3><p class="text-agro-100 text-sm mt-1">Simulação Inteligente de Crédito</p></div><div class="p-8"><div id="mensagemErro" class="text-red-500 font-bold text-center text-sm mb-4"></div><div id="step1" class="input-step text-center"><p class="text-slate-600 font-bold mb-4 text-lg">Qual seu nome completo?</p><input type="text" id="nomeCliente" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-2xl text-center pb-2 font-bold text-slate-800" placeholder="Seu nome"><button onclick="validateStep1()" class="mt-8 w-full bg-agro-600 hover:bg-agro-700 text-white font-bold py-4 rounded-xl shadow-lg">Continuar <i class="fas fa-arrow-right ml-2"></i></button></div><div id="step2" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-4 text-lg">De onde você é?</p><input type="text" id="localizacao" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-2xl text-center pb-2 font-bold text-slate-800" placeholder="Cidade - Estado"><div class="flex gap-3 mt-8"><button onclick="showNextStep('step1')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="validateStep2()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step3" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-4 text-lg">Qual o seu objetivo?</p><div class="space-y-3"><select id="categoria" class="w-full p-4 border border-gray-300 rounded-xl font-bold text-slate-700 bg-white focus:ring-2 focus:ring-agro-500 outline-none"><option value="" disabled selected>Selecione uma opção...</option><option value="maquinas">🚜 Máquinas / Tratores</option><option value="rural">🌾 Terras / Sítios</option><option value="caminhoes">🚛 Caminhões / Frota</option><option value="carro_moto">🚗 Carros / Motos</option><option value="imoveis">🏠 Imóveis Urbanos</option><option value="solar">☀️ Energia Solar</option></select></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step2')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="showNextStep('step4')" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step4" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-2 text-lg">Qual o valor do crédito?</p><p class="text-xs text-gray-400 mb-6">Valor do bem que deseja comprar</p><div class="relative"><span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span><input type="tel" id="vlrCredito" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00"></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step3')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="validateStep4()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step5" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-2 text-lg">Quanto quer dar de entrada?</p><p class="text-xs text-gray-400 mb-6">Recomendado: 10% a 30%</p><div class="relative"><span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span><input type="tel" id="vlrEntrada" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00"></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step4')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="validateStep5()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step6" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-2 text-lg">Quanto quer pagar por mês?</p><p class="text-xs text-gray-400 mb-6">Defina a parcela que cabe no bolso</p><div class="relative"><span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span><input type="tel" id="vlrParcela" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00"></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step5')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="calcularProposta()" class="flex-[2] bg-terra-500 hover:bg-terra-600 text-white font-bold py-4 rounded-xl shadow-lg">CALCULAR AGORA</button></div></div><div id="resultsBox" class="hidden"><div class="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-200 text-sm"><div class="flex justify-between py-1 border-b border-gray-200"><span>Cliente:</span> <span class="font-bold text-slate-800" id="resultadoNomeCliente"></span></div><div class="flex justify-between py-1 border-b border-gray-200"><span>Local:</span> <span class="font-bold text-slate-800" id="resultadoLocalizacao"></span></div><div class="flex justify-between py-1 border-b border-gray-200"><span>Bem:</span> <span class="font-bold text-slate-800" id="resultadoCategoria"></span></div><div class="flex justify-between py-1 pt-3 text-agro-600"><span>Crédito:</span> <span class="font-bold text-lg" id="resultadoCredito"></span></div><div class="flex justify-between py-1"><span>Entrada:</span> <span class="font-bold text-slate-800" id="resultadoVlrEntrada"></span></div><div class="flex justify-between py-1 pt-3 text-slate-900 bg-yellow-50 px-2 -mx-2 rounded"><span>Parcela Sugerida:</span> <span class="font-bold text-lg" id="resultadoParcela"></span></div><div class="flex justify-between py-1 mt-2"><span>Prazo Estimado:</span> <span class="font-bold text-slate-800" id="resultadoPrazo"></span></div><div class="hidden"><span id="resultadoPercEntrada"></span><span id="resultadoVlrTaxa"></span><span id="resultadoTaxaPerc"></span><span id="resultadoDividaBruta"></span><span id="resultadoSaldoDevedor"></span></div></div><a id="actionButton" href="#" target="_blank" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-4 rounded-xl shadow-lg btn-pulse transition"><i class="fab fa-whatsapp mr-2 text-xl"></i> Formalizar no WhatsApp</a><button onclick="resetSimulation()" class="block w-full text-center text-gray-400 text-xs font-bold mt-4 hover:text-gray-600">Nova Simulação</button></div></div></div></div>
+    <div id="modalSimulador" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeSimulator()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative fade-in-step">
+                <div class="bg-agro-600 p-6 text-white text-center relative">
+                    <button onclick="closeSimulator()" class="absolute top-4 right-4 text-white/70 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+                    <h3 class="text-2xl font-black" id="welcomeTitle">Olá, bem-vindo(a)!</h3>
+                    <p class="text-agro-100 text-sm mt-1">Simulação Inteligente de Crédito</p>
+                </div>
+                <div class="p-8">
+                    <div id="mensagemErro" class="text-red-500 font-bold text-center text-sm mb-4"></div>
+                    
+                    <div id="step1" class="input-step text-center">
+                        <p class="text-slate-600 font-bold mb-4 text-lg">Qual seu nome completo?</p>
+                        <input type="text" id="nomeCliente" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-2xl text-center pb-2 font-bold text-slate-800" placeholder="Seu nome">
+                        <button onclick="validateStep1()" class="mt-8 w-full bg-agro-600 hover:bg-agro-700 text-white font-bold py-4 rounded-xl shadow-lg">Continuar <i class="fas fa-arrow-right ml-2"></i></button>
+                    </div>
+
+                    <div id="step2" class="input-step hidden text-center">
+                        <p class="text-slate-600 font-bold mb-4 text-lg">De onde você é?</p>
+                        <input type="text" id="localizacao" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-2xl text-center pb-2 font-bold text-slate-800" placeholder="Cidade - Estado">
+                        <div class="flex gap-3 mt-8">
+                            <button onclick="showNextStep('step1')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button>
+                            <button onclick="validateStep2()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button>
+                        </div>
+                    </div>
+
+                    <div id="step3" class="input-step hidden text-center">
+                        <p class="text-slate-600 font-bold mb-4 text-lg">Qual o seu objetivo?</p>
+                        <div class="space-y-3">
+                            <select id="categoria" class="w-full p-4 border border-gray-300 rounded-xl font-bold text-slate-700 bg-white focus:ring-2 focus:ring-agro-500 outline-none">
+                                <option value="" disabled selected>Selecione uma opção...</option>
+                                <option value="maquinas">🚜 Máquinas / Tratores</option>
+                                <option value="rural">🌾 Terras / Sítios</option>
+                                <option value="caminhoes">🚛 Caminhões / Frota</option>
+                                <option value="carro_moto">🚗 Carros / Motos</option>
+                                <option value="imoveis">🏠 Imóveis Urbanos</option>
+                                <option value="solar">☀️ Energia Solar</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-3 mt-8">
+                            <button onclick="showNextStep('step2')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button>
+                            <button onclick="showNextStep('step4')" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button>
+                        </div>
+                    </div>
+
+                    <div id="step4" class="input-step hidden text-center">
+                        <p class="text-slate-600 font-bold mb-2 text-lg">Qual o valor do crédito?</p>
+                        <p class="text-xs text-gray-400 mb-6">Valor do bem que deseja comprar</p>
+                        <div class="relative">
+                            <span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span>
+                            <input type="tel" id="vlrCredito" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00">
+                        </div>
+                        <div class="flex gap-3 mt-8">
+                            <button onclick="showNextStep('step3')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button>
+                            <button onclick="validateStep4()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button>
+                        </div>
+                    </div>
+
+                    <div id="step5" class="input-step hidden text-center">
+                        <p class="text-slate-600 font-bold mb-2 text-lg">Quanto quer dar de entrada?</p>
+                        <p class="text-xs text-gray-400 mb-6">Recomendado: 10% a 30%</p>
+                        <div class="relative">
+                            <span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span>
+                            <input type="tel" id="vlrEntrada" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00">
+                        </div>
+                        <div class="flex gap-3 mt-8">
+                            <button onclick="showNextStep('step4')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button>
+                            <button onclick="validateStep5()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button>
+                        </div>
+                    </div>
+
+                    <div id="step6" class="input-step hidden text-center">
+                        <p class="text-slate-600 font-bold mb-2 text-lg">Quanto quer pagar por mês?</p>
+                        <p class="text-xs text-gray-400 mb-6">Defina a parcela que cabe no bolso</p>
+                        <div class="relative">
+                            <span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span>
+                            <input type="tel" id="vlrParcela" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00">
+                        </div>
+                        <div class="flex gap-3 mt-8">
+                            <button onclick="showNextStep('step5')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button>
+                            <button onclick="calcularProposta()" class="flex-[2] bg-terra-500 hover:bg-terra-600 text-white font-bold py-4 rounded-xl shadow-lg">CALCULAR AGORA</button>
+                        </div>
+                    </div>
+
+                    <div id="resultsBox" class="hidden">
+                        <div class="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-200 text-sm">
+                            <div class="flex justify-between py-1 border-b border-gray-200"><span>Cliente:</span> <span class="font-bold text-slate-800" id="resultadoNomeCliente"></span></div>
+                            <div class="flex justify-between py-1 border-b border-gray-200"><span>Local:</span> <span class="font-bold text-slate-800" id="resultadoLocalizacao"></span></div>
+                            <div class="flex justify-between py-1 border-b border-gray-200"><span>Bem:</span> <span class="font-bold text-slate-800" id="resultadoCategoria"></span></div>
+                            <div class="flex justify-between py-1 pt-3 text-agro-600"><span>Crédito:</span> <span class="font-bold text-lg" id="resultadoCredito"></span></div>
+                            <div class="flex justify-between py-1"><span>Entrada:</span> <span class="font-bold text-slate-800" id="resultadoVlrEntrada"></span></div>
+                            <div class="flex justify-between py-1 pt-3 text-slate-900 bg-yellow-50 px-2 -mx-2 rounded"><span>Parcela Sugerida:</span> <span class="font-bold text-lg" id="resultadoParcela"></span></div>
+                            <div class="flex justify-between py-1 mt-2"><span>Prazo Estimado:</span> <span class="font-bold text-slate-800" id="resultadoPrazo"></span></div>
+                            <div class="hidden"><span id="resultadoPercEntrada"></span><span id="resultadoVlrTaxa"></span><span id="resultadoTaxaPerc"></span><span id="resultadoDividaBruta"></span><span id="resultadoSaldoDevedor"></span></div>
+                        </div>
+                        <a id="actionButton" href="#" target="_blank" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-4 rounded-xl shadow-lg btn-pulse transition"><i class="fab fa-whatsapp mr-2 text-xl"></i> Formalizar no WhatsApp</a>
+                        <button onclick="resetSimulation()" class="block w-full text-center text-gray-400 text-xs font-bold mt-4 hover:text-gray-600">Nova Simulação</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="bg-white border-t border-gray-200 pt-12 pb-8 mt-auto">
         <div class="max-w-7xl mx-auto px-4"><div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8"><div><div class="flex items-center gap-2 mb-4"><i class="fas fa-leaf text-agro-600 text-xl"></i><span class="font-black text-xl text-slate-900">DoTerra</span></div><p class="text-sm text-gray-500">CNPJ: 00.000.000/0001-00</p><p class="text-sm text-gray-500">Av. Carlos Gomes, Porto Velho - RO</p></div><div><h4 class="font-bold text-slate-900 mb-3">Comprar</h4><ul class="text-sm text-gray-500 space-y-2"><li><a href="#" class="hover:text-agro-600">Tratores</a></li><li><a href="#" class="hover:text-agro-600">Caminhonetes</a></li><li><a href="#" class="hover:text-agro-600">Fazendas</a></li></ul></div><div><h4 class="font-bold text-slate-900 mb-3">Serviços</h4><ul class="text-sm text-gray-500 space-y-2"><li><a href="#" class="hover:text-agro-600">Simular Consórcio</a></li><li><a href="#" class="hover:text-agro-600">Vender Ativo</a></li><li><a href="#" class="hover:text-agro-600">Tabela Fipe</a></li></ul></div><div><h4 class="font-bold text-slate-900 mb-3">Ajuda</h4><ul class="text-sm text-gray-500 space-y-2"><li><a href="#" class="hover:text-agro-600">Fale Conosco</a></li><li><a href="login.html" class="flex items-center gap-1 text-slate-400 hover:text-agro-600 font-bold"><i class="fas fa-lock text-xs"></i> Área Restrita</a></li></ul></div></div><div class="border-t border-gray-100 pt-8 text-center"><p class="text-xs text-gray-400">&copy; 2026 DoTerra Marketplace. Todos os direitos reservados.</p></div></div>
@@ -250,9 +442,15 @@
             const menu = document.getElementById('sideMenu');
             const overlay = document.getElementById('menuOverlay');
             if (menu.classList.contains('translate-x-full')) {
-                menu.classList.remove('translate-x-full'); overlay.classList.remove('hidden'); setTimeout(() => overlay.classList.remove('opacity-0'), 10); document.body.style.overflow = 'hidden';
+                menu.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden';
             } else {
-                menu.classList.add('translate-x-full'); overlay.classList.add('opacity-0'); setTimeout(() => overlay.classList.add('hidden'), 300); document.body.style.overflow = '';
+                menu.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+                document.body.style.overflow = '';
             }
         }
 
@@ -263,17 +461,26 @@
         }
 
         // --- LÓGICA DO SIMULADOR ---
-        function openSimulator() { document.getElementById('modalSimulador').classList.remove('hidden'); document.body.style.overflow = 'hidden'; resetSimulation(); }
-        function closeSimulator() { document.getElementById('modalSimulador').classList.add('hidden'); document.body.style.overflow = ''; }
+        function openSimulator() {
+            document.getElementById('modalSimulador').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetSimulation();
+        }
+
+        function closeSimulator() {
+            document.getElementById('modalSimulador').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
 
         // --- LÓGICA DO MODAL ANÚNCIO (DINÂMICO) ---
-        function openAnuncioModal() { 
-            document.getElementById('modalAnuncio').classList.remove('hidden'); 
-            document.body.style.overflow = 'hidden'; 
+        function openAnuncioModal() {
+            document.getElementById('modalAnuncio').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
-        function closeAnuncioModal() { 
-            document.getElementById('modalAnuncio').classList.add('hidden'); 
-            document.body.style.overflow = ''; 
+
+        function closeAnuncioModal() {
+            document.getElementById('modalAnuncio').classList.add('hidden');
+            document.body.style.overflow = '';
         }
 
         function updateFormFields() {
@@ -281,9 +488,11 @@
             const condition = document.getElementById('fieldCondition');
             
             // Esconder tudo primeiro
-            ['fieldsVeiculo', 'fieldsMaquina', 'fieldsImovel', 'fieldsGado'].forEach(id => {
-                document.getElementById(id).classList.add('hidden');
-            });
+            document.getElementById('fieldsVeiculo').classList.add('hidden');
+            document.getElementById('fieldsMaquina').classList.add('hidden');
+            document.getElementById('fieldsImovel').classList.add('hidden');
+            document.getElementById('fieldsGado').classList.add('hidden');
+            
             condition.classList.add('hidden');
 
             // Mostrar baseando na escolha
@@ -300,9 +509,18 @@
             }
         }
 
-        // --- LÓGICA DA CALCULADORA (SIMULADOR) ---
-        const MAPA_DE_TAXAS = { 'rural': 17.5, 'imoveis': 20.5, 'carro_moto': 20, 'caminhoes': 17.5, 'maquinas': 17.5, 'servicos': 20.5, 'capital_giro': 20.5, 'default': 20.5 };
-        const WHATSAPP_NUMBER_DEFAULT = "5569992000000"; 
+        // --- LÓGICA DA CALCULADORA ---
+        const MAPA_DE_TAXAS = {
+            'rural': 17.5,
+            'imoveis': 20.5,
+            'carro_moto': 20,
+            'caminhoes': 17.5,
+            'maquinas': 17.5,
+            'servicos': 20.5,
+            'capital_giro': 20.5,
+            'default': 20.5
+        };
+        const WHATSAPP_NUMBER_DEFAULT = "5569992000000";
 
         function getWhatsAppNumberFromUrl() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -311,35 +529,138 @@
         }
 
         function showNextStep(nextStepId) {
-            document.getElementById('mensagemErro').textContent = ''; 
+            document.getElementById('mensagemErro').textContent = '';
             document.getElementById('resultsBox').style.display = 'none';
-            document.querySelectorAll('.input-step').forEach(step => step.style.display = 'none');
+            
+            const steps = document.querySelectorAll('.input-step');
+            steps.forEach(step => step.style.display = 'none');
+            
             const nextStep = document.getElementById(nextStepId);
-            if (nextStep) { nextStep.style.display = 'block'; nextStep.classList.add('fade-in-step'); }
+            if (nextStep) {
+                nextStep.style.display = 'block';
+                nextStep.classList.add('fade-in-step');
+            }
         }
 
         function resetSimulation() {
-            document.getElementById('nomeCliente').value = ''; document.getElementById('localizacao').value = ''; document.getElementById('categoria').value = ''; document.getElementById('vlrCredito').value = ''; document.getElementById('vlrEntrada').value = ''; document.getElementById('vlrParcela').value = ''; document.getElementById('welcomeTitle').textContent = 'Olá, bem-vindo(a)!'; showNextStep('step1');
+            document.getElementById('nomeCliente').value = '';
+            document.getElementById('localizacao').value = '';
+            document.getElementById('categoria').value = '';
+            document.getElementById('vlrCredito').value = '';
+            document.getElementById('vlrEntrada').value = '';
+            document.getElementById('vlrParcela').value = '';
+            document.getElementById('welcomeTitle').textContent = 'Olá, bem-vindo(a)!';
+            showNextStep('step1');
         }
 
-        function exibirErro(mensagem) { document.getElementById('resultsBox').style.display = 'none'; document.getElementById('mensagemErro').textContent = mensagem; }
-        function formatarInput(input) { let valor = input.value.replace(/\D/g, ''); let numero = valor ? parseInt(valor) / 100 : 0; input.value = numero.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-        function parseMonetary(valorString) { let valorLimpo = valorString.replace(/\./g, '').replace(/,/g, '.'); return parseFloat(valorLimpo) || 0; }
-        const formatarMoeda = (valor) => { if (typeof valor !== 'number' || isNaN(valor)) return 'R$ 0,00'; return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); };
-        function obterTaxa(categoria) { const taxaPerc = MAPA_DE_TAXAS[categoria] || MAPA_DE_TAXAS['default']; return { percentual: taxaPerc, decimal: taxaPerc / 100 }; }
+        function exibirErro(mensagem) {
+            document.getElementById('resultsBox').style.display = 'none';
+            document.getElementById('mensagemErro').textContent = mensagem;
+        }
 
-        function validateStep1() { const nome = document.getElementById('nomeCliente').value.trim(); if (nome.length < 3) { exibirErro("Por favor, digite seu nome completo."); return; } document.getElementById('welcomeTitle').textContent = `Muito prazer, ${nome.split(' ')[0]}!`; showNextStep('step2'); }
-        function validateStep2() { const local = document.getElementById('localizacao').value.trim(); if (local.length < 3) { exibirErro("Informe sua Cidade/Estado."); return; } document.getElementById('welcomeTitle').textContent = 'Simulador de Proposta'; showNextStep('step3'); }
-        function validateStep4() { const vlr = parseMonetary(document.getElementById('vlrCredito').value); if (vlr <= 0) { exibirErro("Valor inválido."); return; } showNextStep('step5'); }
-        function validateStep5() { const V_CREDITO = parseMonetary(document.getElementById('vlrCredito').value); const V_ENTRADA = parseMonetary(document.getElementById('vlrEntrada').value); document.getElementById('mensagemErro').textContent = ''; const MIN_ENTRADA = V_CREDITO * 0.10; const MAX_ENTRADA = V_CREDITO * 0.30; if (V_ENTRADA > 0) { if (V_ENTRADA < MIN_ENTRADA || V_ENTRADA > MAX_ENTRADA) { exibirErro(`Entrada deve ser entre ${formatarMoeda(MIN_ENTRADA)} e ${formatarMoeda(MAX_ENTRADA)}.`); return; } } showNextStep('step6'); }
+        function formatarInput(input) {
+            let valor = input.value.replace(/\D/g, '');
+            let numero = valor ? parseInt(valor) / 100 : 0;
+            input.value = numero.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function parseMonetary(valorString) {
+            let valorLimpo = valorString.replace(/\./g, '').replace(/,/g, '.');
+            return parseFloat(valorLimpo) || 0;
+        }
+
+        const formatarMoeda = (valor) => {
+            if (typeof valor !== 'number' || isNaN(valor)) return 'R$ 0,00';
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        function obterTaxa(categoria) {
+            const taxaPerc = MAPA_DE_TAXAS[categoria] || MAPA_DE_TAXAS['default'];
+            return { percentual: taxaPerc, decimal: taxaPerc / 100 };
+        }
+
+        function validateStep1() {
+            const nome = document.getElementById('nomeCliente').value.trim();
+            if (nome.length < 3) {
+                exibirErro("Por favor, digite seu nome completo.");
+                return;
+            }
+            document.getElementById('welcomeTitle').textContent = `Muito prazer, ${nome.split(' ')[0]}!`;
+            showNextStep('step2');
+        }
+
+        function validateStep2() {
+            const local = document.getElementById('localizacao').value.trim();
+            if (local.length < 3) {
+                exibirErro("Informe sua Cidade/Estado.");
+                return;
+            }
+            document.getElementById('welcomeTitle').textContent = 'Simulador de Proposta';
+            showNextStep('step3');
+        }
+
+        function validateStep4() {
+            const vlr = parseMonetary(document.getElementById('vlrCredito').value);
+            if (vlr <= 0) {
+                exibirErro("Valor inválido.");
+                return;
+            }
+            showNextStep('step5');
+        }
+
+        function validateStep5() {
+            const V_CREDITO = parseMonetary(document.getElementById('vlrCredito').value);
+            const V_ENTRADA = parseMonetary(document.getElementById('vlrEntrada').value);
+            document.getElementById('mensagemErro').textContent = '';
+            
+            const MIN_ENTRADA = V_CREDITO * 0.10;
+            const MAX_ENTRADA = V_CREDITO * 0.30;
+
+            if (V_ENTRADA > 0) {
+                if (V_ENTRADA < MIN_ENTRADA || V_ENTRADA > MAX_ENTRADA) {
+                    exibirErro(`Entrada deve ser entre ${formatarMoeda(MIN_ENTRADA)} e ${formatarMoeda(MAX_ENTRADA)}.`);
+                    return;
+                }
+            }
+            showNextStep('step6');
+        }
 
         function calcularProposta() {
-            const NOME = document.getElementById('nomeCliente').value; const LOCAL = document.getElementById('localizacao').value; const CAT_EL = document.getElementById('categoria'); const CATEGORIA = CAT_EL.options[CAT_EL.selectedIndex].text; const V_CREDITO = parseMonetary(document.getElementById('vlrCredito').value); const V_ENTRADA = parseMonetary(document.getElementById('vlrEntrada').value); const V_PARCELA = parseMonetary(document.getElementById('vlrParcela').value); const TAXA = obterTaxa(CAT_EL.value);
-            if (V_CREDITO <= 0 || V_PARCELA <= 0) { exibirErro("Valores inválidos."); return; }
-            const V_TOTAL = V_CREDITO * (1 + TAXA.decimal); const V_DEVEDOR = V_TOTAL - V_ENTRADA; const MESES = Math.ceil(V_DEVEDOR / V_PARCELA);
-            document.getElementById('mensagemErro').textContent = ''; document.getElementById('step6').style.display = 'none'; document.getElementById('resultsBox').style.display = 'block'; document.getElementById('welcomeTitle').textContent = 'Resultado da Proposta';
-            document.getElementById('resultadoNomeCliente').textContent = NOME; document.getElementById('resultadoLocalizacao').textContent = LOCAL; document.getElementById('resultadoCategoria').textContent = CATEGORIA; document.getElementById('resultadoCredito').textContent = formatarMoeda(V_CREDITO); document.getElementById('resultadoVlrEntrada').textContent = formatarMoeda(V_ENTRADA); document.getElementById('resultadoParcela').textContent = formatarMoeda(V_PARCELA); document.getElementById('resultadoPrazo').textContent = `${MESES} meses`;
-            const linkButton = document.getElementById('actionButton'); const msg = `*SIMULAÇÃO DOTERRA*\n\nOlá, sou *${NOME}* de ${LOCAL}.\nInteresse: ${CATEGORIA}\nCrédito: ${formatarMoeda(V_CREDITO)}\nEntrada: ${formatarMoeda(V_ENTRADA)}\nParcela Desejada: ${formatarMoeda(V_PARCELA)}\nPrazo Est.: ${MESES} meses.\n\nGostaria de verificar disponibilidade.`; linkButton.href = `https://api.whatsapp.com/send?phone=${getWhatsAppNumberFromUrl()}&text=${encodeURIComponent(msg)}`;
+            const NOME = document.getElementById('nomeCliente').value;
+            const LOCAL = document.getElementById('localizacao').value;
+            const CAT_EL = document.getElementById('categoria');
+            const CATEGORIA = CAT_EL.options[CAT_EL.selectedIndex].text;
+            const V_CREDITO = parseMonetary(document.getElementById('vlrCredito').value);
+            const V_ENTRADA = parseMonetary(document.getElementById('vlrEntrada').value);
+            const V_PARCELA = parseMonetary(document.getElementById('vlrParcela').value);
+            const TAXA = obterTaxa(CAT_EL.value);
+
+            if (V_CREDITO <= 0 || V_PARCELA <= 0) {
+                exibirErro("Valores inválidos.");
+                return;
+            }
+
+            const V_TOTAL = V_CREDITO * (1 + TAXA.decimal);
+            const V_DEVEDOR = V_TOTAL - V_ENTRADA;
+            const MESES = Math.ceil(V_DEVEDOR / V_PARCELA);
+
+            document.getElementById('mensagemErro').textContent = '';
+            document.getElementById('step6').style.display = 'none';
+            document.getElementById('resultsBox').style.display = 'block';
+            document.getElementById('welcomeTitle').textContent = 'Resultado da Proposta';
+
+            document.getElementById('resultadoNomeCliente').textContent = NOME;
+            document.getElementById('resultadoLocalizacao').textContent = LOCAL;
+            document.getElementById('resultadoCategoria').textContent = CATEGORIA;
+            document.getElementById('resultadoCredito').textContent = formatarMoeda(V_CREDITO);
+            document.getElementById('resultadoVlrEntrada').textContent = formatarMoeda(V_ENTRADA);
+            document.getElementById('resultadoParcela').textContent = formatarMoeda(V_PARCELA);
+            document.getElementById('resultadoPrazo').textContent = `${MESES} meses`;
+
+            const linkButton = document.getElementById('actionButton');
+            const msg = `*SIMULAÇÃO DOTERRA*\n\nOlá, sou *${NOME}* de ${LOCAL}.\nInteresse: ${CATEGORIA}\nCrédito: ${formatarMoeda(V_CREDITO)}\nEntrada: ${formatarMoeda(V_ENTRADA)}\nParcela Desejada: ${formatarMoeda(V_PARCELA)}\nPrazo Est.: ${MESES} meses.\n\nGostaria de verificar disponibilidade.`;
+            
+            linkButton.href = `https://api.whatsapp.com/send?phone=${getWhatsAppNumberFromUrl()}&text=${encodeURIComponent(msg)}`;
         }
     </script>
 </body>
