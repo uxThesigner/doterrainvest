@@ -12,7 +12,7 @@
             theme: {
                 extend: {
                     colors: {
-                        agro: { 500: '#16a34a', 600: '#15803d', 900: '#052e16' },
+                        agro: { 500: '#16a34a', 600: '#15803d', 800: '#166534', 900: '#052e16' },
                         terra: { 500: '#D69E2E', 600: '#B7791F' },
                     },
                     fontFamily: { sans: ['Inter', 'sans-serif'] }
@@ -24,10 +24,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #F3F4F6; }
         
+        /* NOVO FUNDO HERO: Verde, Degradê e Textura */
         .hero-bg {
-            background-image: url('https://images.unsplash.com/photo-1625246333195-58197bd47d72?q=80&w=1920&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+            background-color: #052e16; /* Fallback */
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
+                linear-gradient(135deg, #052e16 0%, #15803d 100%);
+            background-size: 24px 24px, 100% 100%;
         }
         
         @keyframes pulse-custom {
@@ -114,25 +117,21 @@
     <div id="menuOverlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/60 z-[55] hidden transition-opacity opacity-0 backdrop-blur-sm"></div>
 
     <div class="relative pt-20 pb-12 bg-white">
-        <div class="absolute inset-x-0 top-0 h-[350px] hero-bg">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
-        </div>
+        <div class="absolute inset-x-0 top-0 h-[380px] hero-bg shadow-inner"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 mt-8">
-            <h2 class="text-white text-2xl md:text-4xl font-extrabold mb-6 text-center drop-shadow-md">
+            <h2 class="text-white text-2xl md:text-4xl font-extrabold mb-6 text-center drop-shadow-md tracking-tight">
                 O jeito seguro de comprar e vender no Agro.
             </h2>
 
-            <div class="bg-white rounded-lg shadow-2xl p-2 max-w-4xl mx-auto">
+            <div class="bg-white rounded-xl shadow-2xl p-2 max-w-4xl mx-auto transform translate-y-2">
                 <div class="flex border-b border-gray-200 px-4">
-                    <div class="search-tab active px-4 pt-4 flex items-center gap-2">
+                    <div onclick="activateTab(this, 'buy')" class="search-tab active px-4 pt-4 border-b-4 border-agro-600 text-agro-700 flex items-center gap-2">
                         <i class="fas fa-shopping-cart"></i> Comprar
                     </div>
-                    
                     <div onclick="openAnuncioModal()" class="search-tab px-4 pt-4 hover:text-slate-800 flex items-center gap-2">
                         <i class="fas fa-tag"></i> Vender
                     </div>
-                    
                     <div onclick="openSimulator()" class="search-tab px-4 pt-4 hover:text-slate-800 flex items-center gap-2 text-agro-600 font-bold">
                         <i class="fas fa-calculator"></i> Simular
                     </div>
@@ -161,15 +160,41 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-4 md:grid-cols-8 gap-4 mt-8 max-w-4xl mx-auto text-center">
-                <a href="#" class="group flex flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-tractor text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Tratores</span></a>
-                <a href="#" class="group flex flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-truck-pickup text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Picapes</span></a>
-                <a href="#" class="group flex flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-wheat text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Terras</span></a>
-                <a href="#" class="group flex flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-home text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Imóveis</span></a>
-                <a href="#" class="hidden md:flex group flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-truck-moving text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Caminhões</span></a>
-                <a href="#" class="hidden md:flex group flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-cow text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Gado</span></a>
-                <a href="#" class="hidden md:flex group flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-solar-panel text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Solar</span></a>
-                <a href="#" class="hidden md:flex group flex-col items-center gap-2"><div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-ellipsis-h text-2xl"></i></div><span class="text-xs font-bold text-slate-600">Ver Mais</span></a>
+            <div class="grid grid-cols-4 md:grid-cols-8 gap-4 mt-12 max-w-4xl mx-auto text-center">
+                <a href="#" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-tractor text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Tratores</span>
+                </a>
+                <a href="#" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-truck-pickup text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Picapes</span>
+                </a>
+                <a href="#" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100">
+                        <i class="fas fa-map-location-dot text-2xl"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-600">Terras</span>
+                </a>
+                <a href="#" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-home text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Imóveis</span>
+                </a>
+                <a href="#" class="hidden md:flex group flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-truck-moving text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Caminhões</span>
+                </a>
+                <a href="#" class="hidden md:flex group flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-cow text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Gado</span>
+                </a>
+                <a href="#" class="hidden md:flex group flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-solar-panel text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Solar</span>
+                </a>
+                <a href="#" class="hidden md:flex group flex-col items-center gap-2">
+                    <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-slate-600 group-hover:text-agro-600 group-hover:shadow-lg transition border border-gray-100"><i class="fas fa-ellipsis-h text-2xl"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Ver Mais</span>
+                </a>
             </div>
         </div>
     </div>
@@ -258,64 +283,14 @@
             <h2 class="text-3xl font-black text-slate-900 mb-4">Venda seu ativo na DoTerra</h2>
             <p class="text-slate-600 mb-8 max-w-2xl mx-auto">Milhares de produtores acessam nossa plataforma todos os dias. A melhor vitrine para o seu negócio.</p>
             <div class="flex justify-center gap-4">
-                <button onclick="openAnuncioModal()" class="bg-terra-500 hover:bg-terra-600 text-slate-900 px-8 py-4 rounded-lg font-black shadow-lg transition transform hover:-translate-y-1">
-                    Anunciar Grátis
-                </button>
-                <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-8 py-4 rounded-lg font-bold transition">
-                    Ver Planos
-                </button>
+                <button onclick="openAnuncioModal()" class="bg-terra-500 hover:bg-terra-600 text-slate-900 px-8 py-4 rounded-lg font-black shadow-lg transition transform hover:-translate-y-1">Anunciar Grátis</button>
+                <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-8 py-4 rounded-lg font-bold transition">Ver Planos</button>
             </div>
         </div>
     </div>
 
-    <footer class="bg-white border-t border-gray-200 pt-12 pb-8 mt-auto">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <i class="fas fa-leaf text-agro-600 text-xl"></i>
-                        <span class="font-black text-xl text-slate-900">DoTerra</span>
-                    </div>
-                    <p class="text-sm text-gray-500">CNPJ: 00.000.000/0001-00</p>
-                    <p class="text-sm text-gray-500">Av. Carlos Gomes, Porto Velho - RO</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-slate-900 mb-3">Comprar</h4>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li><a href="#" class="hover:text-agro-600">Tratores</a></li>
-                        <li><a href="#" class="hover:text-agro-600">Caminhonetes</a></li>
-                        <li><a href="#" class="hover:text-agro-600">Fazendas</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-slate-900 mb-3">Serviços</h4>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li><a href="#" class="hover:text-agro-600">Simular Consórcio</a></li>
-                        <li><a href="#" class="hover:text-agro-600">Vender Ativo</a></li>
-                        <li><a href="#" class="hover:text-agro-600">Tabela Fipe</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-slate-900 mb-3">Ajuda</h4>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li><a href="#" class="hover:text-agro-600">Fale Conosco</a></li>
-                        <li><a href="login.html" class="flex items-center gap-1 text-slate-400 hover:text-agro-600 font-bold"><i class="fas fa-lock text-xs"></i> Área Restrita</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-100 pt-8 text-center">
-                <p class="text-xs text-gray-400">&copy; 2026 DoTerra Marketplace. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/5569992000000" target="_blank" class="fixed bottom-6 left-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition transform hover:-translate-y-1 btn-pulse">
-        <i class="fab fa-whatsapp text-3xl"></i>
-    </a>
-
     <div id="modalAnuncio" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeAnuncioModal()"></div>
-        
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div class="bg-white w-full max-w-3xl rounded-2xl shadow-2xl relative animate-slide-up flex flex-col max-h-[90vh]">
                 
@@ -324,9 +299,7 @@
                         <h3 class="text-xl font-black text-slate-900">O que você vai anunciar?</h3>
                         <p class="text-sm text-slate-500">Preencha os detalhes para vender mais rápido.</p>
                     </div>
-                    <button onclick="closeAnuncioModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-red-100 hover:text-red-500 transition">
-                        <i class="fas fa-times text-lg"></i>
-                    </button>
+                    <button onclick="closeAnuncioModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-red-100 hover:text-red-500 transition"><i class="fas fa-times text-lg"></i></button>
                 </div>
 
                 <div class="p-6 overflow-y-auto custom-scrollbar flex-1">
@@ -352,20 +325,10 @@
                     </div>
 
                     <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Título do Anúncio *</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Ex: Trator Valtra A950 4x4 Cabinado">
-                        </div>
-                        
+                        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Título do Anúncio *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Ex: Trator Valtra A950 4x4 Cabinado"></div>
                         <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Preço (R$) *</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none font-bold" placeholder="0,00">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Localização *</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Cidade - UF">
-                            </div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Preço (R$) *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none font-bold" placeholder="0,00"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Localização *</label><input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none" placeholder="Cidade - UF"></div>
                         </div>
                     </div>
 
@@ -374,14 +337,9 @@
                         <div id="fieldCondition" class="hidden mb-6">
                             <label class="block text-sm font-bold text-slate-700 mb-3">Condição</label>
                             <div class="flex gap-3">
-                                <input type="radio" name="condicao" id="condNovo" class="hidden radio-btn">
-                                <label for="condNovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Novo</label>
-                                
-                                <input type="radio" name="condicao" id="condSeminovo" class="hidden radio-btn">
-                                <label for="condSeminovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Seminovo</label>
-                                
-                                <input type="radio" name="condicao" id="condUsado" class="hidden radio-btn">
-                                <label for="condUsado" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Usado</label>
+                                <input type="radio" name="condicao" id="condNovo" class="hidden radio-btn"><label for="condNovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Novo</label>
+                                <input type="radio" name="condicao" id="condSeminovo" class="hidden radio-btn"><label for="condSeminovo" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Seminovo</label>
+                                <input type="radio" name="condicao" id="condUsado" class="hidden radio-btn"><label for="condUsado" class="flex-1 py-2 text-center border border-gray-300 rounded-lg font-bold text-sm cursor-pointer hover:bg-gray-50 transition">Usado</label>
                             </div>
                         </div>
 
@@ -416,7 +374,6 @@
                         <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Descrição Detalhada</label>
                         <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agro-500 outline-none h-32 resize-none" placeholder="Descreva os detalhes importantes, estado de conservação, aceita troca, etc..."></textarea>
                     </div>
-
                 </div>
 
                 <div class="p-6 border-t border-gray-100 bg-gray-50 flex justify-end gap-3 rounded-b-2xl">
@@ -428,6 +385,12 @@
     </div>
 
     <div id="modalSimulador" class="fixed inset-0 z-[100] hidden"><div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeSimulator()"></div><div class="absolute inset-0 flex items-center justify-center p-4"><div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative fade-in-step"><div class="bg-agro-600 p-6 text-white text-center relative"><button onclick="closeSimulator()" class="absolute top-4 right-4 text-white/70 hover:text-white"><i class="fas fa-times text-xl"></i></button><h3 class="text-2xl font-black" id="welcomeTitle">Olá, bem-vindo(a)!</h3><p class="text-agro-100 text-sm mt-1">Simulação Inteligente de Crédito</p></div><div class="p-8"><div id="mensagemErro" class="text-red-500 font-bold text-center text-sm mb-4"></div><div id="step1" class="input-step text-center"><p class="text-slate-600 font-bold mb-4 text-lg">Qual seu nome completo?</p><input type="text" id="nomeCliente" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-2xl text-center pb-2 font-bold text-slate-800" placeholder="Seu nome"><button onclick="validateStep1()" class="mt-8 w-full bg-agro-600 hover:bg-agro-700 text-white font-bold py-4 rounded-xl shadow-lg">Continuar <i class="fas fa-arrow-right ml-2"></i></button></div><div id="step2" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-4 text-lg">De onde você é?</p><input type="text" id="localizacao" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-2xl text-center pb-2 font-bold text-slate-800" placeholder="Cidade - Estado"><div class="flex gap-3 mt-8"><button onclick="showNextStep('step1')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="validateStep2()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step3" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-4 text-lg">Qual o seu objetivo?</p><div class="space-y-3"><select id="categoria" class="w-full p-4 border border-gray-300 rounded-xl font-bold text-slate-700 bg-white focus:ring-2 focus:ring-agro-500 outline-none"><option value="" disabled selected>Selecione uma opção...</option><option value="maquinas">🚜 Máquinas / Tratores</option><option value="rural">🌾 Terras / Sítios</option><option value="caminhoes">🚛 Caminhões / Frota</option><option value="carro_moto">🚗 Carros / Motos</option><option value="imoveis">🏠 Imóveis Urbanos</option><option value="solar">☀️ Energia Solar</option></select></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step2')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="showNextStep('step4')" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step4" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-2 text-lg">Qual o valor do crédito?</p><p class="text-xs text-gray-400 mb-6">Valor do bem que deseja comprar</p><div class="relative"><span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span><input type="tel" id="vlrCredito" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00"></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step3')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="validateStep4()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step5" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-2 text-lg">Quanto quer dar de entrada?</p><p class="text-xs text-gray-400 mb-6">Recomendado: 10% a 30%</p><div class="relative"><span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span><input type="tel" id="vlrEntrada" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00"></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step4')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="validateStep5()" class="flex-[2] bg-agro-600 text-white font-bold py-4 rounded-xl shadow-lg">Continuar</button></div></div><div id="step6" class="input-step hidden text-center"><p class="text-slate-600 font-bold mb-2 text-lg">Quanto quer pagar por mês?</p><p class="text-xs text-gray-400 mb-6">Defina a parcela que cabe no bolso</p><div class="relative"><span class="absolute left-0 top-1 text-2xl font-bold text-slate-400">R$</span><input type="tel" id="vlrParcela" oninput="formatarInput(this)" class="w-full border-b-2 border-gray-300 focus:border-agro-500 outline-none text-3xl text-right pb-2 font-bold text-slate-800" placeholder="0,00"></div><div class="flex gap-3 mt-8"><button onclick="showNextStep('step5')" class="flex-1 bg-gray-100 text-gray-500 font-bold py-4 rounded-xl">Voltar</button><button onclick="calcularProposta()" class="flex-[2] bg-terra-500 hover:bg-terra-600 text-white font-bold py-4 rounded-xl shadow-lg">CALCULAR AGORA</button></div></div><div id="resultsBox" class="hidden"><div class="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-200 text-sm"><div class="flex justify-between py-1 border-b border-gray-200"><span>Cliente:</span> <span class="font-bold text-slate-800" id="resultadoNomeCliente"></span></div><div class="flex justify-between py-1 border-b border-gray-200"><span>Local:</span> <span class="font-bold text-slate-800" id="resultadoLocalizacao"></span></div><div class="flex justify-between py-1 border-b border-gray-200"><span>Bem:</span> <span class="font-bold text-slate-800" id="resultadoCategoria"></span></div><div class="flex justify-between py-1 pt-3 text-agro-600"><span>Crédito:</span> <span class="font-bold text-lg" id="resultadoCredito"></span></div><div class="flex justify-between py-1"><span>Entrada:</span> <span class="font-bold text-slate-800" id="resultadoVlrEntrada"></span></div><div class="flex justify-between py-1 pt-3 text-slate-900 bg-yellow-50 px-2 -mx-2 rounded"><span>Parcela Sugerida:</span> <span class="font-bold text-lg" id="resultadoParcela"></span></div><div class="flex justify-between py-1 mt-2"><span>Prazo Estimado:</span> <span class="font-bold text-slate-800" id="resultadoPrazo"></span></div><div class="hidden"><span id="resultadoPercEntrada"></span><span id="resultadoVlrTaxa"></span><span id="resultadoTaxaPerc"></span><span id="resultadoDividaBruta"></span><span id="resultadoSaldoDevedor"></span></div></div><a id="actionButton" href="#" target="_blank" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-4 rounded-xl shadow-lg btn-pulse transition"><i class="fab fa-whatsapp mr-2 text-xl"></i> Formalizar no WhatsApp</a><button onclick="resetSimulation()" class="block w-full text-center text-gray-400 text-xs font-bold mt-4 hover:text-gray-600">Nova Simulação</button></div></div></div></div>
+
+    <footer class="bg-white border-t border-gray-200 pt-12 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4"><div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8"><div><div class="flex items-center gap-2 mb-4"><i class="fas fa-leaf text-agro-600 text-xl"></i><span class="font-black text-xl text-slate-900">DoTerra</span></div><p class="text-sm text-gray-500">CNPJ: 00.000.000/0001-00</p><p class="text-sm text-gray-500">Av. Carlos Gomes, Porto Velho - RO</p></div><div><h4 class="font-bold text-slate-900 mb-3">Comprar</h4><ul class="text-sm text-gray-500 space-y-2"><li><a href="#" class="hover:text-agro-600">Tratores</a></li><li><a href="#" class="hover:text-agro-600">Caminhonetes</a></li><li><a href="#" class="hover:text-agro-600">Fazendas</a></li></ul></div><div><h4 class="font-bold text-slate-900 mb-3">Serviços</h4><ul class="text-sm text-gray-500 space-y-2"><li><a href="#" class="hover:text-agro-600">Simular Consórcio</a></li><li><a href="#" class="hover:text-agro-600">Vender Ativo</a></li><li><a href="#" class="hover:text-agro-600">Tabela Fipe</a></li></ul></div><div><h4 class="font-bold text-slate-900 mb-3">Ajuda</h4><ul class="text-sm text-gray-500 space-y-2"><li><a href="#" class="hover:text-agro-600">Fale Conosco</a></li><li><a href="login.html" class="flex items-center gap-1 text-slate-400 hover:text-agro-600 font-bold"><i class="fas fa-lock text-xs"></i> Área Restrita</a></li></ul></div></div><div class="border-t border-gray-100 pt-8 text-center"><p class="text-xs text-gray-400">&copy; 2026 DoTerra Marketplace. Todos os direitos reservados.</p></div></div>
+    </footer>
+
+    <a href="https://wa.me/5569992000000" target="_blank" class="fixed bottom-6 left-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition transform hover:-translate-y-1 btn-pulse"><i class="fab fa-whatsapp text-3xl"></i></a>
 
     <script>
         // --- UX / NAVEGAÇÃO ---
