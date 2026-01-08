@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trator Valtra A950 - DoTerra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agro: { 500: '#16a34a', 600: '#15803d', 900: '#052e16' },
+                        terra: { 500: '#D69E2E', 600: '#B7791F' },
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; }
+        
+        /* Galeria Scroll Snap (Instagram Style) */
+        .gallery-snap {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .gallery-item {
+            scroll-snap-align: center;
+        }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="text-slate-800 pb-24 md:pb-0">
+
+    <nav class="bg-white h-16 border-b border-gray-200 fixed w-full z-50 top-0 flex items-center justify-between px-4">
+        <a href="index.html" class="text-slate-500 hover:text-agro-600 transition p-2">
+            <i class="fas fa-arrow-left text-xl"></i>
+        </a>
+        <div class="font-bold text-slate-900 truncate mx-4">Trator Valtra A950 4x4</div>
+        <button class="text-slate-500 hover:text-red-500 transition p-2">
+            <i class="far fa-heart text-xl"></i>
+        </button>
+    </nav>
+
+    <div class="max-w-7xl mx-auto md:mt-20 md:px-4 md:grid md:grid-cols-3 md:gap-8">
+        
+        <div class="md:col-span-2">
+            <div class="relative w-full h-[350px] md:h-[500px] bg-black md:rounded-2xl overflow-hidden mt-16 md:mt-0 group">
+                <div class="flex overflow-x-auto h-full gallery-snap hide-scroll" id="gallery">
+                    <img src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?q=80&w=1200" class="w-full h-full object-cover flex-shrink-0 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517594632980-535c0c330156?q=80&w=1200" class="w-full h-full object-cover flex-shrink-0 gallery-item">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1200" class="w-full h-full object-cover flex-shrink-0 gallery-item">
+                </div>
+                
+                <div class="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
+                    <i class="fas fa-camera mr-1"></i> 1/3
+                </div>
+
+                <button onclick="scrollGallery(-1)" class="hidden md:flex absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full items-center justify-center hover:bg-white transition shadow-lg"><i class="fas fa-chevron-left"></i></button>
+                <button onclick="scrollGallery(1)" class="hidden md:flex absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full items-center justify-center hover:bg-white transition shadow-lg"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="p-5 md:px-0">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="text-xs font-bold text-agro-600 uppercase tracking-wider mb-1">Maquinário Pesado</p>
+                        <h1 class="text-2xl md:text-3xl font-black text-slate-900 leading-tight">Trator Valtra A950 G4</h1>
+                    </div>
+                </div>
+                
+                <div class="flex items-center text-sm text-slate-500 mb-6">
+                    <i class="fas fa-map-marker-alt text-terra-500 mr-2"></i> Ariquemes, RO
+                    <span class="mx-2">•</span>
+                    <span>Anunciado há 2 dias</span>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 text-center">
+                        <p class="text-xs text-slate-400 uppercase font-bold">Ano</p>
+                        <p class="font-bold text-slate-800">2021</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 text-center">
+                        <p class="text-xs text-slate-400 uppercase font-bold">Horas</p>
+                        <p class="font-bold text-slate-800">1.200h</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 text-center">
+                        <p class="text-xs text-slate-400 uppercase font-bold">Tração</p>
+                        <p class="font-bold text-slate-800">4x4</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 text-center">
+                        <p class="text-xs text-slate-400 uppercase font-bold">Potência</p>
+                        <p class="font-bold text-slate-800">95 cv</p>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Descrição do Veículo</h3>
+                    <div class="text-slate-600 text-sm leading-relaxed space-y-2">
+                        <p>Trator Valtra A950 G4, ano 2021, único dono. Equipamento em excelente estado de conservação, todas as revisões feitas na concessionária.</p>
+                        <p>- Cabinado original de fábrica com ar condicionado.</p>
+                        <p>- Pneus traseiros com 80% de vida útil.</p>
+                        <p>- Transmissão 12x12 com reversor.</p>
+                        <p>Nota fiscal de origem e manual. Aceito propostas à vista ou financiamento bancário.</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-200 py-4">
+                    <button class="flex justify-between items-center w-full font-bold text-slate-800">
+                        Ficha Técnica Completa <i class="fas fa-chevron-down text-slate-400"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-1 relative">
+            <div class="sticky top-24 bg-white md:rounded-2xl md:shadow-lg md:border md:border-gray-100 p-6">
+                
+                <p class="text-xs text-slate-400 uppercase font-bold mb-1">Valor à Vista</p>
+                <div class="text-4xl font-black text-agro-600 mb-2">R$ 285.000</div>
+                <p class="text-xs text-terra-600 font-bold bg-terra-50 inline-block px-2 py-1 rounded mb-6">
+                    <i class="fas fa-tag mr-1"></i> Preço abaixo da FIPE
+                </p>
+
+                <div class="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100">
+                    <p class="text-xs font-bold text-slate-700 mb-2 flex items-center">
+                        <i class="fas fa-calculator text-agro-500 mr-2"></i> Simulação de Consórcio
+                    </p>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-500">Entrada sugerida:</span>
+                        <span class="font-bold">R$ 57.000</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-500">Parcelas a partir de:</span>
+                        <span class="font-bold text-agro-600">R$ 3.150/mês</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:block space-y-3">
+                    <button onclick="enviarMensagem()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1 flex items-center justify-center">
+                        <i class="fab fa-whatsapp text-2xl mr-2"></i> Enviar Mensagem
+                    </button>
+                    <button class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-4 rounded-xl transition">
+                        Ver Telefone
+                    </button>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-gray-100 flex items-center">
+                    <div class="relative">
+                        <img src="https://ui-avatars.com/api/?name=Danilo+Terra&background=0D9488&color=fff" class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-xs text-slate-400 font-bold uppercase">Anunciante</p>
+                        <p class="font-bold text-slate-900">Danilo Terra</p>
+                        <div class="flex text-xs text-yellow-500">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="text-slate-400 ml-1">(42)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-4 md:hidden z-40 flex items-center justify-between shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+        <div>
+            <p class="text-xs text-slate-400 font-bold uppercase">Valor</p>
+            <p class="text-xl font-black text-agro-600">R$ 285.000</p>
+        </div>
+        <button onclick="enviarMensagem()" class="bg-green-500 text-white font-bold px-6 py-3 rounded-xl shadow-lg flex items-center animate-pulse">
+            <i class="fab fa-whatsapp text-xl mr-2"></i> Chamar
+        </button>
+    </div>
+
+    <script>
+        function scrollGallery(direction) {
+            const gallery = document.getElementById('gallery');
+            const scrollAmount = gallery.clientWidth;
+            gallery.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+        }
+
+        function enviarMensagem() {
+            const phone = "5569992000000"; // Seu número
+            const text = "Olá! Vi o anúncio do *Trator Valtra A950* no site da DoTerra e gostaria de mais informações.";
+            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
