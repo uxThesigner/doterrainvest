@@ -10,170 +10,209 @@
     <title>Estoque - DoTerra Admin</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+        
         .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        .smooth-transition { transition: transform 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
         .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .smooth-transition { transition: transform 0.3s ease-out; }
     </style>
 </head>
 <body class="bg-gray-50 font-sans h-screen flex flex-col overflow-hidden text-gray-800">
 
-    <header class="bg-white h-16 shadow-sm flex items-center justify-between px-5 sticky top-0 z-10">
-        <div class="flex items-center">
-            <a href="admin.html" class="text-gray-500 mr-4 active:text-green-600 transition"><i class="fas fa-arrow-left text-xl"></i></a>
-            <h2 class="text-lg font-bold text-gray-800">Gestão de Estoque</h2>
+    <aside class="hidden md:flex w-64 bg-slate-900 text-white flex-col h-full fixed left-0 top-0 z-20">
+        <div class="h-20 flex items-center justify-center border-b border-slate-800">
+            <span class="text-xl font-bold tracking-wider flex items-center">
+                <i class="fas fa-leaf text-green-500 mr-2"></i>DoTerra SYS
+            </span>
         </div>
-        <div class="flex space-x-3">
-            <button class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center"><i class="fas fa-search"></i></button>
-            <button class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center"><i class="fas fa-sort-amount-down"></i></button>
-        </div>
-    </header>
+        <nav class="flex-1 px-4 py-6 space-y-2 flex flex-col">
+            <a href="admin.html" class="flex items-center space-x-3 text-slate-400 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+                <i class="fas fa-chart-line w-6 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            
+            <a href="leads.html" class="flex items-center space-x-3 text-slate-400 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+                <i class="fas fa-users w-6 text-center"></i>
+                <span class="font-medium">CRM & Leads</span>
+            </a>
+            
+            <a href="estoque.html" class="flex items-center space-x-3 bg-green-600 text-white px-4 py-3 rounded-xl shadow-lg transition transform hover:scale-105">
+                <i class="fas fa-tractor w-6 text-center"></i>
+                <span class="font-medium">Estoque</span>
+            </a>
 
-    <div class="bg-white pb-3 px-5 border-b border-gray-100 overflow-x-auto no-scrollbar whitespace-nowrap pt-2">
-        <button class="bg-green-600 text-white px-5 py-2 rounded-lg text-xs font-bold mr-3 shadow-md transition transform active:scale-95">
-            Todos (28)
-        </button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-lg text-xs font-bold mr-3 flex items-center transition hover:border-green-500">
-            <i class="fas fa-tractor mr-2 text-orange-500"></i> Máquinas
-        </button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-lg text-xs font-bold mr-3 flex items-center transition hover:border-green-500">
-            <i class="fas fa-wheat mr-2 text-green-600"></i> Terras
-        </button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-lg text-xs font-bold mr-3 flex items-center transition hover:border-green-500">
-            <i class="fas fa-truck-pickup mr-2 text-blue-600"></i> Veículos
-        </button>
-    </div>
+            <div class="flex-1"></div>
 
-    <div class="flex-1 overflow-y-auto no-scrollbar p-4 pb-24 space-y-5">
+            <a href="index.html" target="_blank" class="flex items-center space-x-3 text-slate-400 hover:text-blue-400 hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+                <i class="fas fa-globe w-6 text-center"></i>
+                <span class="font-medium">Ver Site</span>
+            </a>
+            
+             <a href="index.html" class="flex items-center space-x-3 text-slate-400 hover:text-red-400 hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+                <i class="fas fa-sign-out-alt w-6 text-center"></i>
+                <span class="font-medium">Sair</span>
+            </a>
+        </nav>
+    </aside>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative">
-            <div class="h-40 relative">
-                <img src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover">
-                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur text-gray-800 text-[10px] font-bold px-2 py-1 rounded flex items-center shadow-sm">
-                    <i class="fas fa-tractor text-orange-500 mr-1.5"></i> MAQUINÁRIO
-                </div>
-                <div class="absolute top-3 right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">
-                    PUBLICADO
-                </div>
-                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-3 pt-8">
-                    <h3 class="text-white font-bold text-lg leading-tight">Trator Valtra A950 <span class="text-xs font-normal text-gray-300 ml-1">2021</span></h3>
-                    <p class="text-green-400 font-bold text-xl">R$ 285.000</p>
+    <main class="flex-1 flex flex-col h-full md:ml-64 relative">
+        
+        <header class="bg-white/90 backdrop-blur-md h-16 shadow-sm flex items-center justify-between px-5 sticky top-0 z-10 md:hidden">
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold mr-3">D</div>
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800">Estoque</h2>
+                    <p class="text-[10px] text-green-600 font-bold flex items-center">28 Ativos</p>
                 </div>
             </div>
+            <button onclick="toggleModal('modalNovoAnuncio')" class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-md active:scale-90 transition">
+                <i class="fas fa-plus"></i>
+            </button>
+        </header>
 
-            <div class="p-4">
-                <div class="flex justify-between items-center mb-4">
-                    <div class="flex -space-x-2">
-                        <div class="w-7 h-7 rounded-full bg-white border border-gray-200 flex items-center justify-center z-30" title="Site Próprio"><i class="fas fa-leaf text-green-600 text-xs"></i></div>
-                        <div class="w-7 h-7 rounded-full bg-purple-100 border border-white flex items-center justify-center z-20" title="OLX"><i class="fas fa-store text-purple-600 text-xs"></i></div>
-                        <div class="w-7 h-7 rounded-full bg-yellow-100 border border-white flex items-center justify-center z-10" title="Mercado Livre"><i class="fas fa-handshake text-yellow-600 text-xs"></i></div>
-                        <div class="w-7 h-7 rounded-full bg-gray-100 border border-white flex items-center justify-center z-0 text-[9px] font-bold text-gray-500">+1</div>
+        <header class="hidden md:flex bg-white h-20 shadow-sm items-center justify-between px-8">
+            <h2 class="text-2xl font-bold text-gray-800">Gestão de Estoque</h2>
+            <button onclick="toggleModal('modalNovoAnuncio')" class="bg-green-600 text-white px-6 py-2.5 rounded-lg font-bold shadow-md hover:bg-green-700 transition flex items-center transform hover:-translate-y-0.5">
+                <i class="fas fa-plus mr-2"></i> Novo Anúncio
+            </button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto no-scrollbar p-4 pb-24 md:p-8 md:pb-8">
+            
+            <div class="flex gap-2 overflow-x-auto no-scrollbar pb-4">
+                <button class="bg-slate-800 text-white px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-md">Todos (28)</button>
+                <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:border-green-500 transition">Ativos (22)</button>
+                <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:border-yellow-500 transition">Pausados (4)</button>
+                <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:border-blue-500 transition">Vendidos (2)</button>
+            </div>
+
+            <div class="space-y-4">
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col md:flex-row gap-4 animate-fade-in">
+                    <div class="w-full md:w-48 h-32 bg-gray-200 rounded-lg relative overflow-hidden flex-shrink-0 group">
+                        <img src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?q=80&w=400" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-2 left-2 bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">ATIVO</span>
                     </div>
                     
-                    <div class="text-right">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">Visualizações</p>
-                        <p class="text-sm font-bold text-gray-700 flex items-center justify-end"><i class="fas fa-eye text-green-500 mr-1.5"></i> 1.240</p>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-lg">Trator Valtra A950 G4</h3>
+                                <p class="text-xs text-gray-500 mb-2">Ref: #TR-0921 • Maquinário • 2021</p>
+                                <p class="text-xl font-black text-green-700">R$ 285.000,00</p>
+                            </div>
+                            <div class="text-right hidden md:block">
+                                <p class="text-xs text-gray-400">Visualizações</p>
+                                <p class="font-bold text-gray-700">1.240</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex flex-wrap gap-2 items-center">
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mr-1">Integrado em:</span>
+                            <span class="bg-green-50 text-green-700 border border-green-200 text-[10px] px-2 py-0.5 rounded flex items-center font-bold" title="Site Oficial"><i class="fas fa-leaf mr-1"></i> Site</span>
+                            <span class="bg-yellow-50 text-yellow-700 border border-yellow-200 text-[10px] px-2 py-0.5 rounded flex items-center font-bold" title="Mercado Livre"><i class="fas fa-handshake mr-1"></i> ML</span>
+                            <span class="bg-purple-50 text-purple-700 border border-purple-200 text-[10px] px-2 py-0.5 rounded flex items-center font-bold" title="OLX"><i class="fas fa-store mr-1"></i> OLX</span>
+                        </div>
+                    </div>
+
+                    <div class="flex md:flex-col justify-end gap-2 border-t md:border-t-0 md:border-l border-gray-100 pt-3 md:pt-0 md:pl-4">
+                        <button class="flex-1 md:flex-none bg-blue-50 text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center">
+                            <i class="fas fa-pen mr-2"></i> Editar
+                        </button>
+                        <button class="flex-1 md:flex-none bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center">
+                            <i class="fas fa-trash mr-2"></i> Remover
+                        </button>
+                        <button class="flex-1 md:flex-none bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center">
+                            <i class="fas fa-pause mr-2"></i> Pausar
+                        </button>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-3">
-                    <button class="flex items-center justify-center py-2 bg-gray-50 text-gray-600 rounded-lg text-xs font-bold hover:bg-gray-100">
-                        <i class="fas fa-edit mr-2"></i> Editar
-                    </button>
-                    <button class="flex items-center justify-center py-2 bg-green-50 text-green-600 rounded-lg text-xs font-bold hover:bg-green-100">
-                        <i class="fab fa-whatsapp mr-2"></i> Compartilhar
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative">
-            <div class="h-40 relative">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover">
-                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur text-gray-800 text-[10px] font-bold px-2 py-1 rounded flex items-center shadow-sm">
-                    <i class="fas fa-wheat text-green-600 mr-1.5"></i> RURAL
-                </div>
-                <div class="absolute top-3 right-3 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-1 rounded shadow-sm">
-                    RASCUNHO
-                </div>
-                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-3 pt-8">
-                    <h3 class="text-white font-bold text-lg leading-tight">Fazenda Sta. Fé <span class="text-xs font-normal text-gray-300 ml-1">500 Hec</span></h3>
-                    <p class="text-green-400 font-bold text-xl">R$ 4.500.000</p>
-                </div>
-            </div>
-
-            <div class="p-4">
-                <div class="flex justify-between items-center mb-4">
-                    <div class="flex items-center text-xs text-gray-500">
-                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i> Faltam fotos para publicar
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col md:flex-row gap-4 animate-fade-in opacity-90">
+                    <div class="w-full md:w-48 h-32 bg-gray-200 rounded-lg relative overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=400" class="w-full h-full object-cover grayscale">
+                        <span class="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-0.5 rounded">RASCUNHO</span>
                     </div>
-                    <div class="text-right">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">Cliques</p>
-                        <p class="text-sm font-bold text-gray-700">0</p>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-gray-600 text-lg">Fazenda Santa Fé</h3>
+                                <p class="text-xs text-gray-400 mb-2">Ref: #FZ-1002 • Imóvel Rural</p>
+                                <p class="text-xl font-black text-gray-500">R$ 4.500.000,00</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2 items-center">
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mr-1">Status:</span>
+                            <span class="bg-gray-100 text-gray-500 border border-gray-200 text-[10px] px-2 py-0.5 rounded flex items-center font-bold"><i class="fas fa-clock mr-1"></i> Aguardando Fotos</span>
+                        </div>
+                    </div>
+                    <div class="flex md:flex-col justify-end gap-2 border-t md:border-t-0 md:border-l border-gray-100 pt-3 md:pt-0 md:pl-4">
+                        <button class="flex-1 md:flex-none bg-green-50 text-green-600 hover:bg-green-100 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center">
+                            <i class="fas fa-check mr-2"></i> Publicar
+                        </button>
+                        <button class="flex-1 md:flex-none bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center">
+                            <i class="fas fa-cog mr-2"></i> Editar
+                        </button>
                     </div>
                 </div>
 
-                <button class="w-full flex items-center justify-center py-2.5 bg-yellow-50 text-yellow-700 rounded-lg text-xs font-bold hover:bg-yellow-100">
-                    <i class="fas fa-camera mr-2"></i> Completar Cadastro
-                </button>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col md:flex-row gap-4 animate-fade-in bg-gray-50">
+                    <div class="w-full md:w-48 h-32 bg-gray-200 rounded-lg relative overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=400" class="w-full h-full object-cover opacity-60">
+                        <span class="absolute top-2 left-2 bg-gray-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">VENDIDO</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-gray-500 text-lg">Toyota Hilux SRX 2024</h3>
+                                <p class="text-xs text-gray-400 mb-2">Ref: #VH-2201 • Veículo</p>
+                                <p class="text-xl font-black text-gray-400 line-through">R$ 340.000,00</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2 items-center">
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mr-1">Vendido pelo:</span>
+                            <span class="bg-red-50 text-red-700 border border-red-200 text-[10px] px-2 py-0.5 rounded flex items-center font-bold"><i class="fas fa-car mr-1"></i> WebMotors</span>
+                        </div>
+                    </div>
+                    <div class="flex md:flex-col justify-end gap-2 border-t md:border-t-0 md:border-l border-gray-200 pt-3 md:pt-0 md:pl-4">
+                        <button class="flex-1 md:flex-none bg-white border border-gray-200 text-gray-500 hover:text-blue-600 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center">
+                            <i class="fas fa-file-invoice-dollar mr-2"></i> Ver Nota
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative opacity-75 grayscale-[50%]">
-            <div class="h-40 relative">
-                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover">
-                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur text-gray-800 text-[10px] font-bold px-2 py-1 rounded flex items-center shadow-sm">
-                    <i class="fas fa-truck-pickup text-blue-600 mr-1.5"></i> VEÍCULO
-                </div>
-                <div class="absolute top-3 right-3 bg-gray-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">
-                    VENDIDO
-                </div>
-                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-3 pt-8">
-                    <h3 class="text-white font-bold text-lg leading-tight">Hilux SRX 2024</h3>
-                    <p class="text-white font-bold text-xl line-through decoration-red-500 decoration-2">R$ 340.000</p>
-                </div>
-            </div>
-            
-            <div class="p-4 bg-gray-50">
-                <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold text-gray-500">Vendido em 12/05/2026</span>
-                    <button class="text-xs text-blue-600 font-bold hover:underline">Ver negociação</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="h-8"></div>
-    </div>
+    </main>
 
     <nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-100 flex justify-around items-end pb-2 pt-2 z-40 shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
         <a href="admin.html" class="flex flex-col items-center w-16 text-gray-400 hover:text-green-600 tap-highlight-transparent transition">
             <i class="fas fa-home text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Início</span>
         </a>
-        
         <a href="leads.html" class="flex flex-col items-center w-16 text-gray-400 hover:text-green-600 tap-highlight-transparent transition">
             <i class="fas fa-users text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Leads</span>
         </a>
-        
         <div class="relative -top-5">
             <button onclick="toggleModal('modalNovoAnuncio')" class="w-14 h-14 bg-green-600 rounded-full shadow-xl flex items-center justify-center text-white text-2xl transform transition active:scale-90 tap-highlight-transparent border-4 border-gray-50">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
-        
         <a href="#" class="flex flex-col items-center w-16 text-green-600 tap-highlight-transparent">
             <i class="fas fa-tractor text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Estoque</span>
         </a>
-        
         <button onclick="toggleMenu()" class="flex flex-col items-center w-16 text-gray-400 hover:text-gray-600 tap-highlight-transparent">
             <i class="fas fa-bars text-xl mb-1"></i>
             <span class="text-[10px] font-medium">Menu</span>
@@ -189,7 +228,7 @@
                 <div class="ml-3"><h3 class="font-bold text-gray-800 text-lg">Danilo Terra</h3><p class="text-xs text-gray-500">Administrador Master</p></div>
             </div>
             <div class="p-4 space-y-1 overflow-y-auto">
-                <a href="#" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition"><div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mr-4"><i class="fas fa-user-cog"></i></div><div class="flex-1"><h4 class="font-bold text-gray-800 text-sm">Meu Perfil</h4><p class="text-xs text-gray-400">Editar dados</p></div></a>
+                <a href="index.html" target="_blank" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition"><div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mr-4"><i class="fas fa-globe"></i></div><div class="flex-1"><h4 class="font-bold text-gray-800 text-sm">Ver Site</h4><p class="text-xs text-gray-400">Visualizar loja</p></div></a>
                 <a href="#" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition"><div class="w-10 h-10 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mr-4"><i class="fas fa-users-cog"></i></div><div class="flex-1"><h4 class="font-bold text-gray-800 text-sm">Gerenciar Equipe</h4><p class="text-xs text-gray-400">Vendedores</p></div></a>
                 <a href="#" class="flex items-center p-4 hover:bg-gray-50 rounded-xl transition"><div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center mr-4"><i class="fas fa-network-wired"></i></div><div class="flex-1"><h4 class="font-bold text-gray-800 text-sm">Integrações</h4><p class="text-xs text-gray-400">Configurar canais</p></div></a>
             </div>
@@ -218,9 +257,11 @@
                         <h4 class="text-sm font-bold text-blue-800 mb-3 flex items-center"><i class="fas fa-share-alt mr-2"></i> Publicar em:</h4>
                         <div class="space-y-2 overflow-y-auto max-h-[250px] pr-1 no-scrollbar">
                             <label class="flex items-center bg-white p-3 rounded-lg border-2 border-green-500 shadow-sm opacity-80"><input type="checkbox" checked disabled class="text-green-600 rounded focus:ring-green-500"><span class="ml-2 text-xs font-bold text-gray-700">Site DoTerra</span></label>
-                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" checked class="text-purple-600 rounded"><i class="fas fa-store text-purple-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">OLX Brasil</span></label>
-                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" checked class="text-blue-600 rounded"><i class="fab fa-facebook-f text-blue-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">Facebook</span></label>
-                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm"><input type="checkbox" class="text-yellow-500 rounded"><i class="fas fa-handshake text-yellow-500 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">Mercado Livre</span></label>
+                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm hover:border-purple-400 transition"><input type="checkbox" checked class="text-purple-600 rounded focus:ring-purple-500"><i class="fas fa-store text-purple-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">OLX Brasil</span></label>
+                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm hover:border-blue-400 transition"><input type="checkbox" checked class="text-blue-600 rounded focus:ring-blue-500"><i class="fab fa-facebook-f text-blue-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">Facebook</span></label>
+                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm hover:border-yellow-400 transition"><input type="checkbox" class="text-yellow-500 rounded focus:ring-yellow-500"><i class="fas fa-handshake text-yellow-500 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">Mercado Livre</span></label>
+                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm hover:border-red-400 transition"><input type="checkbox" class="text-red-600 rounded focus:ring-red-500"><i class="fas fa-car text-red-600 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">WebMotors</span></label>
+                            <label class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm hover:border-indigo-900 transition"><input type="checkbox" class="text-indigo-900 rounded focus:ring-indigo-900"><i class="fas fa-road text-indigo-900 ml-2 mr-1"></i><span class="text-xs font-bold text-gray-700">Mobiauto</span></label>
                         </div>
                     </div>
                 </div>
